@@ -1,0 +1,26 @@
+<div id="questions-container">
+	{{#each content.procedures:i}}
+		<div class="question-container order-{{i%2}} state-{{active}}">
+			<div class="question-intro" on-click="toggleQuestion">
+				<span class="question-radio-button"></span>
+				<h3>{{question}}</h3>
+				<h4>Average cost: £5494</h4>
+			</div>
+			
+			<div class="hidden-container">
+				<ul class="treatment-list">
+					{{#each treatments}}
+						<li class="{{#if added}}added{{/if}}" on-click="toggleTreatment"><span class="treatment-radio-button"></span>{{name}}</li>
+					{{/each}}
+				</ul>
+			</div>
+		</div>
+	{{/each}}
+</div>
+
+<div id="receipt-container">
+	<div id="total-number">
+		<p>How much you cost for the NHS</p>
+		<h5>£960</h5>
+	</div>
+</div>

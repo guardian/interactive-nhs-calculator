@@ -1,0 +1,71 @@
+{
+	"procedures": [
+		{
+			"question": "Any heart intervention or disorder?",
+			"id": "A1",
+			"gender": "all",
+			"treatments": [
+				{
+					"id": "JA27Z",
+					"name": "Mastectomy",
+					"full_name": "Mastectomy with Simple Breast Reconstruction",
+					"price": 5340
+				},{
+					"id": "JA27Z",
+					"name": "Stomach bypass for obesity",
+					"full_name": "Mastectomy with Simple Breast Reconstruction",
+					"price": 5340
+				},{
+					"id": "JA27Z",
+					"name": "Appendicectomy",
+					"full_name": "Mastectomy with Simple Breast Reconstruction",
+					"price": 5340
+				},{
+					"id": "JA27Z",
+					"name": "Uterus and menstrual disorders",
+					"full_name": "Mastectomy with Simple Breast Reconstruction",
+					"price": 5340
+				}
+			]
+		},{
+			"question": "Any intervention or disorder relating to your digestive system?",
+			"id": "A2",
+			"gender": "all",
+			"treatments": [
+				{
+					"id": "JA27Z",
+					"name": "Stomach bypass for obesity",
+					"full_name": null,
+					"price": 4360
+				}
+
+			]
+		},{
+			"question": "Any intervention on your head, mouth, or ear?",
+			"id": "A1",
+			"gender": "all",
+			"treatments": [
+				{
+					"id": "JA27Z",
+					"name": "Mastectomy",
+					"full_name": "Mastectomy with Simple Breast Reconstruction",
+					"price": 5340
+				}
+
+			]
+		},{
+			"question": "Any eye intervention or disorder?",
+			"id": "A2",
+			"gender": "all",
+			"treatments": [
+				{
+					"id": "JA27Z",
+					"name": "Stomach bypass for obesity",
+					"full_name": null,
+					"price": 4360
+				}
+
+			]
+		}
+	]
+}
