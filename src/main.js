@@ -10,14 +10,17 @@ var data = require('./data/data.json');
 var base = require('./html/base-with-margins.html');
 var template = require('./html/template.html');
 var Ractive = require('ractive');
+var app;
 
 function doStuff(data, el) {
-	var app = new Ractive({
+	app = new Ractive({
       el: '#interactive-content',
       template: template,
       data: {
       	content: data,
-      	selectedTreatments: []
+      	receipt: {
+      		total: 0
+      	}
       }
     });
 
@@ -25,15 +28,15 @@ function doStuff(data, el) {
 		var path = e.keypath + ".active";
 		var newState = e.context.active === "expanded"  ? "collapsed" : "expanded";
 
-		app.set(path, newState);
-
-		if(e.context.active === "expanded"){
+		if(newState === "expanded"){
 			var hiddenHeight = e.node.parentElement.querySelector('.hidden-container').getBoundingClientRect().height;
-			var elHeight = e.node.parentElement.getBoundingClientRect().height;
+			var elHeight = e.node.parentElement.querySelector('.question-intro').getBoundingClientRect().height;
 			e.node.parentElement.style.minHeight = elHeight + hiddenHeight + "px";
 		}else{
 			e.node.parentElement.style.minHeight = 0;
 		}
+
+		app.set(path, newState);
 	})
 
 	app.on('toggleTreatment',function(e){
@@ -41,18 +44,27 @@ function doStuff(data, el) {
 		var newState = e.context.added ? false : true;
 
 		app.set(path, newState)
-		
-		// if(e.context.added){
-		// 	app.push('selectedTreatments', e.context);
-		// }else{
-		// 	var currentIndex = app.get('selectedTreatments').indexOf(e.context);
-		// 	app.splice('selectedTreatments', currentIndex, 1);
-		// }
+		calculateReceipt();
 	});
+}
 
-	// app.observe('selectedTreatments',function(e){
-	// 	console.log(app.get('selectedTreatments'))
-	// })
+function calculateReceipt(){
+	var selectedTreatments = [];
+	var total = 0;
+
+	app.get('content.procedures').forEach(function(procedure){
+		procedure.treatments.forEach(function(treatment){
+			if(treatment.added){
+				selectedTreatments.push(treatment);
+			}
+		})
+	})
+
+	selectedTreatments.forEach(function(treatment){
+		total += treatment.price;
+	})
+
+	app.set('receipt.total', total);
 }
 
 function boot(el) {

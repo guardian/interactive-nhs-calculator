@@ -10,7 +10,10 @@
 			<div class="hidden-container">
 				<ul class="treatment-list">
 					{{#each treatments}}
-						<li class="{{#if added}}added{{/if}}" on-click="toggleTreatment"><span class="treatment-radio-button"></span>{{name}}</li>
+						<li class="{{#if added}}added{{/if}}" on-click="toggleTreatment">
+							<span class="treatment-radio-button"></span>
+							<span class="treatment-name">{{name}}</span>
+							<span class="treatment-price">£{{price}}</span></li>
 					{{/each}}
 				</ul>
 			</div>
@@ -21,6 +24,15 @@
 <div id="receipt-container">
 	<div id="total-number">
 		<p>How much you cost for the NHS</p>
-		<h5>£960</h5>
+		<h5>£{{receipt.total}}</h5>
+	</div>
+	<div id="total-breakdown">
+	{{#each content.procedures}}
+		{{#each treatments}}
+			{{#if added}}
+				{{name}}
+			{{/if}}
+		{{/each}}
+	{{/each}}
 	</div>
 </div>

@@ -7,10 +7,14 @@
 @import 'margins';
 
 $nhsGreen: #69D1CA;
-$nhsDarkGreen: #19AAA7;
-$nhsBlue: #005689;
+$nhsDarkGreen: #41B2AA;
+
+$guardianBlue: #005689;
 $nhsLightBlue: #197CAA;
+$nhsDarkerBlue: #126A93;
 $nhsDarkBlue: #146388;
+
+
 $nhsWhite: #fff;
 
 body {
@@ -22,6 +26,9 @@ body {
 .interactive {
     margin: 0;
 
+    .gv-wrapper{
+    	position: relative;
+    }
     *, * *{
     	box-sizing:border-box;
     }
@@ -33,7 +40,7 @@ body {
     	padding:30px 10px 20px;
 
     	h1{
-    		color:$nhsBlue;
+    		color:$guardianBlue;
     		margin:0;
     		line-height:1em;
     		font-size:30px;
@@ -60,6 +67,7 @@ body {
 
     #interactive-content{
     	padding:0 10px;
+    	position: relative;
     }
 
     #questions-container{
@@ -67,6 +75,7 @@ body {
     	.question-container{
     		min-height:0;
     		transition: min-height 0.6s, background-color 0.6s;
+    		position: relative;
 
     		&.order-0{
     			background-color:$nhsDarkGreen;
@@ -134,9 +143,13 @@ body {
     		}
     	}
     	.state-expanded{
-    		&.order-0, &.order-1{
+    		&.order-0{
+    			background-color: $nhsDarkerBlue;
+    		}
+    		&.order-1{
     			background-color: $nhsLightBlue;
     		}
+
     		.hidden-container{
     			animation: appear 1s;
     			z-index:1;
@@ -177,6 +190,13 @@ body {
     			padding: 12px 0;
     			border-top:1px solid rgba(255,255,255,0.5);
     			cursor:pointer;
+    			position: relative;
+    			
+    			&:after{
+    				clear:both;
+    				content:'';
+    				display:block;
+    			}
     			&:hover{
     				text-decoration: underline;
     			}
@@ -188,9 +208,8 @@ body {
     				display:block;
     				background-color:#fff;
     				float:left;
-    				margin-right:10px;
-    				margin-top:1px;
-    				position: relative;
+    				left:0;
+    				position: absolute;
     				&:before{
     					display:block;
     					width:6px;
@@ -209,13 +228,26 @@ body {
     					transform: scale(1);
     				}
     			}
+    			.treatment-price{
+    				position: absolute;
+    				right:0;
+    				top:12px;
+    				font-weight:100;
+    				width:60px;
+    				text-align: right;
+    			}
+    			.treatment-name{
+    				padding-right:80px;
+    				padding-left:22px;
+    				display:inline-block;
+    			}
     		}
     	}
     }
     #receipt-container{
     	position: fixed;
     	background:#fff;
-    	top:10px;
+    	bottom:10px;
     	right:10px;
     	padding:10px;
     	box-shadow: 0 2px 2px rgba(0,0,0,0.2);
@@ -229,12 +261,16 @@ body {
     	}
     	h5{
     		font-size:24px;
-    		color:$nhsBlue;
+    		color:$nhsLightBlue;
     		margin:0;
     		float:right;
     		width:80px;
     		text-align:right;
     		line-height:1em;
+    	}
+
+    	#total-breakdown{
+    		display:none;
     	}
     }
     @media(min-width:breakpoints(mobileLandscape)){
@@ -289,13 +325,24 @@ body {
         }
 
         #questions-container{
-        	max-width:380px;
+        	margin-right:240px;
         }
 
 	    .treatment-list{
     		li{
     			font-size:16px;
     			padding: 14px 0;
+    		}
+    	}
+
+    	#receipt-container{
+    		position: absolute;
+    		right:20px;
+    		width:220px;
+    		bottom:auto;
+    		top:0;
+    		#total-breakdown{
+    			display:block;	
     		}
     	}
     }
@@ -314,6 +361,9 @@ body {
     	}
     	#questions-container{
 	    	max-width:620px;
+	    }
+	    #receipt-container{
+	    	width:300px;
 	    }
     }
 
@@ -348,8 +398,27 @@ body {
 	    	.treatment-list{
 	    		column-count:2;
 	    		li{
+	    			padding:16px 0;
 	    			font-size:18px;
 	    			-webkit-column-break-inside: avoid;
+	    			.treatment-price{
+	    				top:16px;
+	    			}
+	    			.treatment-name{
+	    				padding-top:2px;
+	    				padding-left:30px;
+	    			}
+	    			.treatment-radio-button{
+	    				width:20px;
+	    				height:20px;
+	    				border-radius:20px;
+	    				&:before{
+	    					width:12px;
+	    					height:12px;
+	    					margin-left:3px;
+	    					margin-top:3px;
+	    				}
+	    			}
 	    		}
 	    	}
 	    }
@@ -363,6 +432,9 @@ body {
     	}
     	#questions-container{
 	    	margin-left:80px;
+	    }
+	     #receipt-container{
+	    	right:100px;
 	    }
     }
 }
