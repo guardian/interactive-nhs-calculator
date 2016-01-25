@@ -5,14 +5,15 @@
  * ./utils/detect.js	- Device and env detection
  */
 
-// var getJSON = require('./utils/getjson');
-var data = require('./data/data.json');
+var getJSON = require('./utils/getjson');
+var testdata = require('./data/data.json');
+var dataset = {procedures:[]};
 var base = require('./html/base-with-margins.html');
 var template = require('./html/template.html');
 var Ractive = require('ractive');
 var app;
 
-function doStuff(data, el) {
+function initLayout(data, el) {
 	app = new Ractive({
       el: '#interactive-content',
       template: template,
@@ -40,11 +41,13 @@ function doStuff(data, el) {
 	})
 
 	app.on('toggleTreatment',function(e){
+		console.log(e.keypath);
 		var path = e.keypath + ".added";
+		console.log(path);
 		var newState = e.context.added ? false : true;
 
 		app.set(path, newState)
-		calculateReceipt();
+		// calculateReceipt();
 	});
 }
 
@@ -69,13 +72,29 @@ function calculateReceipt(){
 
 function boot(el) {
 	el.innerHTML = base;
-	doStuff(data, el);
+	
+	var key = '1LMCyB22vqx-dF3n4zAGEra7eNZX3duWstDbZf-ST2js';
+	var url = 'http://interactive.guim.co.uk/docsdata-test/' + key + '.json';
+	getJSON(url, function(resp) {
+		processData(resp,el);
+		
+	});
+}
 
-	// var key = '1hy65wVx-pjwjSt2ZK7y4pRDlX9wMXFQbwKN0v3XgtXM';
-	// var url = 'https://interactive.guim.co.uk/spreadsheetdata/' + key + '.json';
-	// getJSON(url, function(data) {
-	// 	
-	// });
+function processData(resp,el){
+	console.log(resp);
+	resp.sheets.questions.forEach(function(question){
+		question.treatments = [];
+		question.treatments = resp.sheets.treatments.filter(function(treatment){
+			if(question.id === treatment.id){
+				treatment.added = false
+				return true
+			}
+		})
+		dataset.procedures.push(question);
+	})
+	console.log(dataset);
+	initLayout(dataset, el);
 }
 
 module.exports = { boot: boot };

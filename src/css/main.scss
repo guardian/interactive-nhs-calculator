@@ -6,15 +6,15 @@
 @import 'modules/_side-margins';
 @import 'margins';
 
-$nhsGreen: #69D1CA;
-$nhsDarkGreen: #41B2AA;
+$nhsGreen: #5BC4BF;
+$nhsDarkGreen: #45B7B1;
 
-$guardianBlue: #005689;
-$nhsLightBlue: #197CAA;
-$nhsDarkerBlue: #126A93;
+$guardianBlue: #00427A;
+$nhsLightBlue: #228ABC;
+$nhsDarkerBlue: #177CAC;
 $nhsDarkBlue: #146388;
 
-
+$nhsGrey: #DAE3E7;
 $nhsWhite: #fff;
 
 body {
@@ -88,7 +88,7 @@ body {
     		.question-intro{
     			color:$nhsWhite;
     			padding:24px 10px;
-    			margin-left:30px;
+    			// margin-left:30px;
     			position: relative;
     			cursor: pointer;
     			&:hover{
@@ -136,7 +136,7 @@ body {
     			opacity:0;
     			position: absolute;
     			z-index:-2;
-    			padding:1px 10px 6px;
+    			padding:1px 10px 12px;
     			ul{
     				margin:0;
     			}
@@ -198,7 +198,10 @@ body {
     				display:block;
     			}
     			&:hover{
-    				text-decoration: underline;
+    				.treatment-name{
+    					text-decoration: underline;
+    				}
+    				
     			}
     			.treatment-radio-button{
     				width:12px;
@@ -249,7 +252,7 @@ body {
     	background:#fff;
     	bottom:10px;
     	right:10px;
-    	padding:10px;
+    	padding:0 10px;
     	box-shadow: 0 2px 2px rgba(0,0,0,0.2);
     	p{
     		font-family: $f-sans-serif-text;
@@ -267,10 +270,55 @@ body {
     		width:80px;
     		text-align:right;
     		line-height:1em;
+    		font-weight:500;
+    	}
+    	#total-number{
+    		overflow:hidden;
+    		padding:12px 0;
     	}
 
     	#total-breakdown{
     		display:none;
+    	}
+
+    	.breakdown-list{
+    		padding:0;
+    		margin:0;
+    		
+    		li{
+    			list-style:none;
+    			font-size:12px;
+    			font-family: $f-sans-serif-text;
+    			color:#767676;
+    			margin:0 0 6px;
+    			line-height:1em;
+
+    			&:first-child{
+    				padding-top:12px;
+    				border-top: 1px dashed $nhsGrey;
+    			}
+    			&:last-child{
+    				padding-bottom:12px;
+    			}
+
+    			&:after{
+    				clear:both;
+    				display:block;
+    				content: '';
+    			}
+
+    			.breakdown-name{
+    				float:left;
+    				width:150px;
+    			}
+
+    			.breakdown-price{
+    				font-weight:bold;
+    				float:right;
+    				width:50px;
+    				text-align: right;
+    			}
+    		}
     	}
     }
     @media(min-width:breakpoints(mobileLandscape)){
@@ -350,6 +398,10 @@ body {
     @media ( min-width: breakpoints(tablet) ) { //740px
 		#questions-container{
 	    	max-width:460px;
+	    	.question-container .question-intro{
+	    		padding-left:20px;
+	    		padding-right:20px;
+	    	}
 	    }
     }
 
@@ -361,13 +413,42 @@ body {
     	}
     	#questions-container{
 	    	max-width:620px;
+	    	.treatment-list{
+	    		column-count:2;
+	    		column-gap: 40px;
+	    		li{
+	    			-webkit-column-break-inside: avoid;
+	    		}
+	    	}
 	    }
 	    #receipt-container{
 	    	width:300px;
 	    }
+	    #receipt-container{ 
+	    	.breakdown-list li .breakdown-name{
+				width:230px;
+			}
+			#total-number{
+				p{
+					font-size:14px;
+					width:120px;
+				}
+				h5{
+					font-size:28px;
+					width:140px;
+				}
+			}
+		}
+
     }
 
     @media ( min-width: breakpoints(leftCol) ) { //1140px
+    	#interactive-header{
+    		h2{
+    			font-size:72px;
+    			max-width:680px;
+    		}
+    	}
     	#questions-container{
 	    	max-width:780px;
 
@@ -376,8 +457,7 @@ body {
 	    			font-size:24px;
 	    		}
 	    		.question-intro{
-	    			padding:36px 20px 36px 30px;
-	    			margin-left:40px;
+	    			padding:36px 20px 36px 20px;
 	    		}
 	    		.question-radio-button{
 	    			width:31px;
@@ -396,11 +476,9 @@ body {
 	    		}
 	    	}
 	    	.treatment-list{
-	    		column-count:2;
 	    		li{
 	    			padding:16px 0;
 	    			font-size:18px;
-	    			-webkit-column-break-inside: avoid;
 	    			.treatment-price{
 	    				top:16px;
 	    			}
