@@ -1,10 +1,14 @@
 <div id="questions-container">
+	<div id="title-question">
+		<h2>Have you ever had...</h2>
+		<p>We won’t save this data</p>
+	</div>
 	{{#each content.procedures:i}}
 		<div class="question-container order-{{i%2}} state-{{active}}">
 			<div class="question-intro" on-click="toggleQuestion">
 				<!-- <span class="question-radio-button"></span> -->
 				<h3>{{question}}</h3>
-				<h4>Average cost: £5494</h4>
+				<h4>Average cost: £{{average}}</h4>
 			</div>
 			
 			<div class="hidden-container">
@@ -21,25 +25,26 @@
 	{{/each}}
 </div>
 
-<div id="receipt-container">
-	<div id="total-number">
-		<p>How much you cost for the NHS</p>
-		<h5>£{{receipt.total}}</h5>
-	</div>
-	<div id="total-breakdown">
-		<ul class="breakdown-list">
-		{{#each content.procedures}}
-			{{#each treatments}}
-				<!-- treatment -->
-				{{#if added}}
-
-					<li>
-						<span class="breakdown-name">{{name}}</span>
-						<span class="breakdown-price">£{{cost}}</span>
-					</li>	
-				{{/if}}
+<div id="receipt-holder">
+	<div id="receipt-container" class="{{#if elOffset < 10}}sticky{{/if}}">
+		<div id="total-number">
+			<p>How much you cost for the NHS</p>
+			<h5>£{{receipt.total}}</h5>
+		</div>
+		<div id="total-breakdown">
+			<ul class="breakdown-list">
+			{{#each content.procedures}}
+				{{#each treatments}}
+					<!-- treatment -->
+					{{#if added}}
+						<li>
+							<span class="breakdown-name">{{name}}</span>
+							<span class="breakdown-price">£{{cost}}</span>
+						</li>	
+					{{/if}}
+				{{/each}}
 			{{/each}}
-		{{/each}}
-		</ul>
+			</ul>
+		</div>
 	</div>
 </div>

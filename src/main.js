@@ -6,7 +6,10 @@
  */
 
 var getJSON = require('./utils/getjson');
-var testdata = require('./data/data.json');
+var throttle = require('./utils/throttle');
+var receiptContainer;
+var sticky = false;
+// var testdata = require('./data/data.json');
 var dataset = {procedures:[]};
 var base = require('./html/base-with-margins.html');
 var template = require('./html/template.html');
@@ -21,7 +24,9 @@ function initLayout(data, el) {
       	content: data,
       	receipt: {
       		total: 0
-      	}
+      	},
+      	elOffset: 200,
+
       }
     });
 
@@ -43,12 +48,14 @@ function initLayout(data, el) {
 	app.on('toggleTreatment',function(e){
 		console.log(e.keypath);
 		var path = e.keypath + ".added";
-		console.log(path);
 		var newState = e.context.added ? false : true;
 
 		app.set(path, newState)
-		// calculateReceipt();
+		calculateReceipt();
 	});
+
+	receiptContainer = document.querySelector('#receipt-holder');
+	window.onscroll = function(){ checkReceiptPos(); }
 }
 
 function calculateReceipt(){
@@ -64,7 +71,7 @@ function calculateReceipt(){
 	})
 
 	selectedTreatments.forEach(function(treatment){
-		total += treatment.price;
+		total += Number(treatment.cost);
 	})
 
 	app.set('receipt.total', total);
@@ -77,24 +84,35 @@ function boot(el) {
 	var url = 'http://interactive.guim.co.uk/docsdata-test/' + key + '.json';
 	getJSON(url, function(resp) {
 		processData(resp,el);
-		
 	});
 }
 
 function processData(resp,el){
-	console.log(resp);
 	resp.sheets.questions.forEach(function(question){
 		question.treatments = [];
+		question.total =  0;
 		question.treatments = resp.sheets.treatments.filter(function(treatment){
 			if(question.id === treatment.id){
 				treatment.added = false
+				question.total += Number(treatment.cost);
 				return true
 			}
 		})
+		question.average = Math.round(question.total / question.treatments.length);
 		dataset.procedures.push(question);
 	})
-	console.log(dataset);
 	initLayout(dataset, el);
 }
+
+var checkReceiptPos = throttle(function(){
+	var elOffset = receiptContainer.getBoundingClientRect().top;
+    if(elOffset < 10 && !sticky){
+    	document.querySelector('#receipt-container').className = " sticky"
+    	sticky = true;
+    }else if(elOffset > 10 && sticky){
+    	document.querySelector('#receipt-container').className = ""
+    	sticky = false;
+    }
+},{delay:100})
 
 module.exports = { boot: boot };

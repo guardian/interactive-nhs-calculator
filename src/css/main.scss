@@ -20,6 +20,7 @@ $nhsWhite: #fff;
 body {
     margin: 0;
     padding: 0;
+    color:#333;
 }
 
 // Remove <figure> margin
@@ -57,6 +58,7 @@ body {
 
     	#header-details-container{
     		margin-top:80px;
+    		visibility: hidden;
     		p{
     			font-family:$f-serif-headline;
     			line-height:1em;
@@ -72,6 +74,23 @@ body {
 
     #questions-container{
     	margin-top:40px;
+    	margin-bottom:30px;
+
+    	#title-question{
+    		margin-top:30px;
+    		margin-bottom:12px;
+    		h2{
+    			font-size:28px;
+    			line-height:1em;
+    			margin:0;
+    		}
+    		p{
+    			margin:0;
+    			font-family: $f-sans-serif-text;
+    			color:#aaa;
+    			font-size:14px;
+    		}
+    	}
     	.question-container{
     		min-height:0;
     		transition: min-height 0.6s, background-color 0.6s;
@@ -188,7 +207,7 @@ body {
     			font-weight:bold;
     			line-height:1em;
     			padding: 12px 0;
-    			border-top:1px solid rgba(255,255,255,0.5);
+    			border-top:1px solid rgba(255,255,255,0.1);
     			cursor:pointer;
     			position: relative;
     			
@@ -213,6 +232,8 @@ body {
     				float:left;
     				left:0;
     				position: absolute;
+                    top:50%;
+                    margin-top:-6px;
     				&:before{
     					display:block;
     					width:6px;
@@ -240,9 +261,10 @@ body {
     				text-align: right;
     			}
     			.treatment-name{
-    				padding-right:80px;
+    				padding-right:60px;
     				padding-left:22px;
     				display:inline-block;
+                    font-weight:500;
     			}
     		}
     	}
@@ -290,7 +312,7 @@ body {
     			font-size:12px;
     			font-family: $f-sans-serif-text;
     			color:#767676;
-    			margin:0 0 6px;
+    			margin:0 0 8px;
     			line-height:1em;
 
     			&:first-child{
@@ -349,14 +371,19 @@ body {
 	    	.treatment-list{
 	    		li{
 	    			font-size:16px;
+                    padding:14px 0;
 	    			.treatment-radio-button{
 	    				width:14px;
 	    				height:14px;
+                        margin-top:-7px;
 	    				&:before{
 	    					width:8px;
 	    					height:8px;
 	    				}
 	    			}
+                    .treatment-price{
+                        top:14px;
+                    }
 	    		}
 	    	}
 	    }
@@ -382,16 +409,25 @@ body {
     			padding: 14px 0;
     		}
     	}
-
-    	#receipt-container{
+    	#receipt-holder{
     		position: absolute;
     		right:20px;
+    		top:0;
+    		width:220px;
+    	}
+    	#receipt-container{
     		width:220px;
     		bottom:auto;
-    		top:0;
+    		position:absolute;
+    		right:auto;
     		#total-breakdown{
     			display:block;	
     		}
+    		&.sticky{
+    			position:fixed;
+    			top:10px;
+    		}
+    		
     	}
     }
 
@@ -413,6 +449,16 @@ body {
     	}
     	#questions-container{
 	    	max-width:620px;
+	    	#title-question{
+	    		padding-left:80px;
+	    		margin-bottom:24px;
+	    		h2{
+	    			font-size:36px;
+	    		}
+	    		p{
+	    			font-size:16px;
+	    		}
+	    	}
 	    	.treatment-list{
 	    		column-count:2;
 	    		column-gap: 40px;
@@ -420,6 +466,9 @@ body {
 	    			-webkit-column-break-inside: avoid;
 	    		}
 	    	}
+	    }
+	    #receipt-holder{
+	    	width:300px;
 	    }
 	    #receipt-container{
 	    	width:300px;
@@ -480,21 +529,22 @@ body {
 	    			padding:16px 0;
 	    			font-size:18px;
 	    			.treatment-price{
-	    				top:16px;
+	    				top:18px;
 	    			}
 	    			.treatment-name{
 	    				padding-top:2px;
 	    				padding-left:30px;
 	    			}
 	    			.treatment-radio-button{
-	    				width:20px;
-	    				height:20px;
+	    				width:18px;
+	    				height:18px;
 	    				border-radius:20px;
+                        margin-top:-9px;
 	    				&:before{
 	    					width:12px;
 	    					height:12px;
-	    					margin-left:3px;
-	    					margin-top:3px;
+	    					margin-left:2px;
+	    					margin-top:2px;
 	    				}
 	    			}
 	    		}
@@ -511,7 +561,7 @@ body {
     	#questions-container{
 	    	margin-left:80px;
 	    }
-	     #receipt-container{
+	    #receipt-holder{
 	    	right:100px;
 	    }
     }
