@@ -8,7 +8,7 @@
 			<div class="question-intro" on-click="toggleQuestion">
 				<!-- <span class="question-radio-button"></span> -->
 				<h3>{{question}}</h3>
-				<h4>Average cost: £{{average}}</h4>
+				<h4>Average cost: £{{format(average)}}</h4>
 			</div>
 			
 			<div class="hidden-container">
@@ -17,7 +17,7 @@
 						<li class="{{#if added}}added{{/if}}" on-click="toggleTreatment">
 							<span class="treatment-radio-button"></span>
 							<span class="treatment-name">{{name}}</span>
-							<span class="treatment-price">£{{cost}}</span></li>
+							<span class="treatment-price">£{{format(cost)}}</span></li>
 					{{/each}}
 				</ul>
 			</div>
@@ -29,7 +29,7 @@
 	<div id="receipt-container" class="{{#if elOffset < 10}}sticky{{/if}}">
 		<div id="total-number">
 			<p>How much you cost for the NHS</p>
-			<h5>£{{receipt.total}}</h5>
+			<h5>£{{format(receipt.total)}}</h5>
 		</div>
 		<div id="total-breakdown">
 			<ul class="breakdown-list">
@@ -39,7 +39,7 @@
 					{{#if added}}
 						<li>
 							<span class="breakdown-name">{{name}}</span>
-							<span class="breakdown-price">£{{cost}}</span>
+							<span class="breakdown-price">£{{format(cost)}}</span>
 						</li>	
 					{{/if}}
 				{{/each}}

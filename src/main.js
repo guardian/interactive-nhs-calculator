@@ -26,7 +26,21 @@ function initLayout(data, el) {
       		total: 0
       	},
       	elOffset: 200,
+      	format: function(cost){
+      		var convertedCost = Number(cost);
+      		if(!isNaN(convertedCost)){
+      			if(convertedCost >= 1000){
+      				var costString = String(convertedCost);
 
+  				    var rgx = /(\d+)(\d{3})/;
+  				    while (rgx.test(costString)) {
+  				            costString = costString.replace(rgx, '$1' + '.' + '$2');
+  				    }
+  				    cost = costString;
+      			}
+      		}
+      		return cost
+      	}
       }
     });
 
