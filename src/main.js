@@ -7,14 +7,14 @@
 
 var getJSON = require('./utils/getjson');
 var throttle = require('./utils/throttle');
-var receiptContainer;
-var sticky = false;
-// var testdata = require('./data/data.json');
-var dataset = {procedures:[]};
 var base = require('./html/base-with-margins.html');
 var template = require('./html/template.html');
 var Ractive = require('ractive');
 var app;
+var receiptContainer;
+var sticky = false;
+var dataset = {procedures:[]};
+var rawData;
 
 function initLayout(data, el) {
 	app = new Ractive({
@@ -34,7 +34,7 @@ function initLayout(data, el) {
 
   				    var rgx = /(\d+)(\d{3})/;
   				    while (rgx.test(costString)) {
-  				            costString = costString.replace(rgx, '$1' + '.' + '$2');
+  				            costString = costString.replace(rgx, '$1' + ',' + '$2');
   				    }
   				    cost = costString;
       			}
@@ -94,11 +94,42 @@ function calculateReceipt(){
 function boot(el) {
 	el.innerHTML = base;
 	
+	
+
 	var key = '1LMCyB22vqx-dF3n4zAGEra7eNZX3duWstDbZf-ST2js';
 	var url = 'http://interactive.guim.co.uk/docsdata-test/' + key + '.json';
 	getJSON(url, function(resp) {
+		initHeader(resp);
 		processData(resp,el);
 	});
+}
+
+function initHeader(resp){
+	var selectEls = document.querySelectorAll('.action-sentence select');
+	var selection = {
+		"gender": "woman",
+		"age": "25 to 29",
+		"visits": "1"
+	}
+
+	for(i=0; i<selectEls.length; i++){
+		selectEls[i].addEventListener('change',function(e){
+			selection[e.target.className] = e.target.value;
+			calculateAverage();
+		})
+	}
+	calculateAverage();
+
+	function calculateAverage(){
+		var gpCost = 59.9;
+		var costBand = resp.sheets.conversiontable.filter(function(cost){
+			return selection.age === cost.age
+		})[0]
+		var ageCost = selection.gender === "woman" ? costBand["female"] : costBand["male"];
+
+		var totalNumber = Number(ageCost) + (gpCost * Number(selection.visits))
+		document.querySelector('#total-number').innerHTML = "£" + Math.round(totalNumber);
+	}
 }
 
 function processData(resp,el){

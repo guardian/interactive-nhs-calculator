@@ -1,12 +1,11 @@
 <div id="questions-container">
 	<div id="title-question">
-		<h2>Have you ever had...</h2>
-		<p>We won’t save this data</p>
+		<h2>Find out how much you have cost the NHS by answering the following questions</h2>
+		<p>This is confidential information, and your data will not be saved</p>
 	</div>
 	{{#each content.procedures:i}}
 		<div class="question-container order-{{i%2}} state-{{active}}">
 			<div class="question-intro" on-click="toggleQuestion">
-				<!-- <span class="question-radio-button"></span> -->
 				<h3>{{question}}</h3>
 				<h4>Average cost: £{{format(average)}}</h4>
 			</div>
@@ -25,7 +24,7 @@
 	{{/each}}
 </div>
 
-<div id="receipt-holder">
+<div id="receipt-holder" class="{{#if receipt.total > 0}}receipt-active{{/if}}">
 	<div id="receipt-container" class="{{#if elOffset < 10}}sticky{{/if}}">
 		<div id="total-number">
 			<p>How much you cost for the NHS</p>

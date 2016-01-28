@@ -3,10 +3,43 @@
     	<header id="interactive-header">
 	    	<h1>NHS Calculator</h1>
 	    	<h2>How much do you cost for the NHS?</h2>
+            <p id="intro-text">NHS spend yearly £100,000, so we are writing this article. Here’s a little bit more explanation from Alberto about this subject. For example, a man of 75 years old cost the NHS about £2800 per year. While his daughter of 44 only cost the NHS £1400. For a baby the cost is relatively high again with £2100.</p>
 
 	    	<div id="header-details-container">
-		    	<p><strong>Fill in these questions to calculate an estimate</strong> (we won’t collect any data)</p>
+                <p class="action-sentence">Generally speaking, this means that a
+                <select class="gender">
+                    <option selected>woman</option>
+                    <option>man</option>
+                </select> between 
+                <select class="age">
+                    <option>0 to 4</option>
+                    <option>5 to 9</option>
+                    <option>10 to 14</option>
+                    <option>15 to 19</option>
+                    <option>20 to 24</option>
+                    <option selected>25 to 29</option>
+                    <option>30 to 34</option>
+                    <option>35 to 39</option>
+                    <option>40 to 44</option>
+                    <option>45 to 49</option>
+                    <option>50 to 54</option>
+                    <option>55 to 59</option>
+                    <option>60 to 64</option>
+                    <option>65 to 69</option>
+                    <option>70 to 74</option>
+                    <option>75 to 79</option>
+                    <option>80 to 84</option>
+                    <option>85+</option>
+                </select> years old, who visits the GP about 
+                <select class="visits">
+                    <option value="1">1 time</option>
+                    <option value="2">2 times</option>
+                    <option value="3">3 times</option>
+                    <option value="4">4 times</option>
+                    <option value="5">5 times</option>
+                </select> a year, will cost the NHS about <span id="total-number">£</span></p>
 	    	</div>
+            <!-- <div id="header-pattern"></div> -->
     	</header>
 
         <div id="interactive-content">
