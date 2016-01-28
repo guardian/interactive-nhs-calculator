@@ -15,7 +15,7 @@
 					{{#each treatments}}
 						<li class="{{#if added}}added{{/if}}" on-click="toggleTreatment">
 							<span class="treatment-radio-button"></span>
-							<span class="treatment-name">{{name}}</span>
+							<span class="treatment-name">{{{name}}}</span>
 							<span class="treatment-price">£{{format(cost)}}</span></li>
 					{{/each}}
 				</ul>
@@ -37,7 +37,7 @@
 					<!-- treatment -->
 					{{#if added}}
 						<li>
-							<span class="breakdown-name">{{name}}</span>
+							<span class="breakdown-name">{{{name}}}</span>
 							<span class="breakdown-price">£{{format(cost)}}</span>
 						</li>	
 					{{/if}}
