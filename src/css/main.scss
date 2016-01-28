@@ -39,7 +39,7 @@ body {
     }
     #interactive-header{
     	background-color: $nhsGreen;
-    	padding:30px 10px 0;
+    	padding:20px 10px 0;
 
     	h1{
     		color:$guardianBlue;
@@ -58,11 +58,12 @@ body {
     	}
         #intro-text{
             font-family:$f-serif-headline;
-            line-height:1.4em;
             font-size:18px;
+            line-height:1.25em;
             color:#fff;
             font-weight:400;
-            margin-top:1.5em;
+            margin-top:24px;
+            margin-bottom:0;
             max-width:620px;
             &:before{
                 height:1px;
@@ -80,16 +81,16 @@ body {
             background:rgba(0,0,0,0.1);
             margin-left:-10px;
             margin-right:-10px;
-            margin-top:48px;
-            padding-bottom:40px;
-            padding-top:6px;
+            margin-top:54px;
+            padding-bottom:36px;
+            padding-top:12px;
     		p{
     			font-family:$f-serif-headline;
-    			line-height:1.25em;
+    			line-height:1.4em;
                 font-size:18px;
                 color:#fff;
                 font-weight:400;
-                margin:0 10px 10px;
+                margin:0 10px;
                 max-width:620px;
                 &.action-sentence{
                     font-weight:bold;
@@ -112,16 +113,6 @@ body {
                 margin-bottom:4px;
             }
     	}
-        #header-pattern{
-            position:absolute;
-            left:80%;
-            top:-400px;
-            width:1400px;
-            height:1400px;
-            background-color:rgba(255,255,255,0.2);
-            transform: rotate(-60deg);
-            z-index:0;
-        }
     }
 
     #interactive-content{
@@ -133,11 +124,11 @@ body {
     	margin-bottom:30px;
 
     	#title-question{
-    		margin-bottom:12px;
-            padding-top:6px;
+    		margin-bottom:24px;
+            padding-top:12px;
     		h2{
     			font-size:18px;
-    			line-height:1em;
+    			line-height:1.25em;
     			margin:0;
     		}
     		p{
@@ -145,6 +136,7 @@ body {
     			font-family: $f-sans-serif-text;
     			color:#aaa;
     			font-size:14px;
+                line-height: 1.25em;
 
     		}
     	}
@@ -156,11 +148,11 @@ body {
 
     		&.order-0{
     			background-color:$nhsDarkerBlue;
-    			margin-left:20px;
+    			margin-right:20px;
     		}
     		&.order-1{
     			background-color:$nhsLightBlue;
-    			margin-right:20px;
+    			margin-left:20px;
     		}
     		.question-intro{
     			color:$nhsWhite;
@@ -400,10 +392,10 @@ body {
 	    #questions-container{
 	    	.question-container{
 	    		&.order-0{
-	    			margin-left:80px;
+	    			margin-right:80px;
 	    		}
 	    		&.order-1{
-	    			margin-right:80px;
+	    			margin-left:80px;
 	    		}
 	    		h3{
 	    			font-size:20px;
@@ -505,15 +497,17 @@ body {
                 margin-left:100px;
                 max-width:540px;
             }
+            #intro-text{
+                margin-top:36px;
+            }
     	}
     	#questions-container{
 	    	max-width:620px;
-            padding-top:12px;
 	    	#title-question{
 	    		padding-left:80px;
-	    		margin-bottom:24px;
+	    		margin-bottom:48px;
 	    		h2{
-	    			font-size:24px;
+                    font-size:20px;
 	    		}
 	    		p{
 	    			font-size:16px;
@@ -568,10 +562,19 @@ body {
             #header-details-container p{
                 font-size:24px;
                 max-width:680px;
+                select{
+                    margin-bottom:8px;
+                }
             }
     	}
     	#questions-container{
 	    	max-width:780px;
+
+            #title-question{
+                h2{
+                    font-size:24px;
+                }
+            }
 
 	    	.question-container{
 	    		h3{
@@ -626,9 +629,10 @@ body {
 
     @media ( min-width: breakpoints(wide) ) {
     	#interactive-header{
+            padding-top:24px;
              h1{
                 position:absolute;
-                font-size:18px;
+                font-size:20px;
                 left:20px;
                 margin:0;
             }

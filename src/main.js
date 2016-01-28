@@ -109,7 +109,7 @@ function initHeader(resp){
 	var selection = {
 		"gender": "woman",
 		"age": "25 to 29",
-		"visits": "1"
+		"visits": "6"
 	}
 
 	for(i=0; i<selectEls.length; i++){
