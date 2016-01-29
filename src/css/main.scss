@@ -22,6 +22,7 @@ body {
     margin: 0;
     padding: 0;
     color:#333;
+    background-color:#fff;
 }
 
 // Remove <figure> margin
@@ -37,29 +38,53 @@ body {
     h1,h2,h3,h4,h5{
     	font-family:$f-serif-headline;
     }
+    .section-header{
+        font-size:20px;
+        font-family:$f-serif-headline;
+        font-weight:bold;
+        margin:0 0 0.25em;
+        line-height: 1em;
+    }
+    .shareButtons{
+        margin-top:12px;
+        button{
+            background:#dff4f3;
+            border:none;
+            width:30px;
+            outline:none;
+            border-radius:30px;
+            height:30px;
+        }
+    }
     #interactive-header{
     	background-color: $nhsGreen;
-    	padding:20px 10px 0;
+    	padding:1px 10px 0;
 
     	h1{
-    		color:$guardianBlue;
-    		margin:0;
+    		margin:1em 0 0;
     		line-height:1em;
     		font-size:18px;
+            font-weight:bold;
+            a{
+                text-decoration: none;
+                color:$guardianBlue;
+                &:hover{
+                    text-decoration: underline;
+                }
+            }
     	}
 
     	h2{
     		color:$nhsWhite;
     		font-weight:100;
     		line-height:1em;
-    		font-size:40px;
+    		font-size:42px;
     		margin:0;
-    		max-width:540px;
     	}
         #intro-text{
             font-family:$f-serif-headline;
             font-size:18px;
-            line-height:1.25em;
+            line-height:24px;
             color:#fff;
             font-weight:400;
             margin-top:24px;
@@ -78,39 +103,53 @@ body {
     	#header-details-container{
             z-index:1;
             position:relative;
-            background:rgba(0,0,0,0.1);
+            background:#7CD0CC;
             margin-left:-10px;
             margin-right:-10px;
+            padding-left:10px;
+            padding-right:10px;
             margin-top:54px;
             padding-bottom:36px;
             padding-top:12px;
     		p{
     			font-family:$f-serif-headline;
-    			line-height:1.4em;
-                font-size:18px;
+    			line-height:28px;
+                font-size:24px;
                 color:#fff;
-                font-weight:400;
-                margin:0 10px;
+                font-weight:100;
+                margin:0;
                 max-width:620px;
                 &.action-sentence{
-                    font-weight:bold;
-                }
-                #total-number{
-                    background: rgba(0,0,0, 0.1);
-                    padding: 4px 10px;
-                    border-radius: 20px;
-                    font-weight:500;
+                    font-weight:400;    
                 }
     		}
+            #total-number{
+                font-family:$f-serif-headline;
+                color:#fff;
+                font-weight:500;
+                display:block;
+                font-size:48px;
+                margin-top:24px;
+                line-height:1em;
+                &:before{
+                    height:1px;
+                    width:70px;
+                    background:#fff;
+                    display:block;
+                    content:'';
+                    margin-bottom:6px;
+                }
+            }
             select{
                 font-size:14px;
                 border-color:#fff;
+                color:#333;
                 height:20px;
                 border:none;
                 background:#fff;
                 font-family:$f-sans-serif-text;
                 vertical-align: bottom;
-                margin-bottom:4px;
+                margin-bottom:2px;
             }
     	}
     }
@@ -121,23 +160,25 @@ body {
     }
 
     #questions-container{
-    	margin-bottom:30px;
 
     	#title-question{
     		margin-bottom:24px;
             padding-top:12px;
     		h2{
-    			font-size:18px;
+    			font-size:20px;
+                font-weight:100;
     			line-height:1.25em;
     			margin:0;
     		}
+            h5{
+                font-weight:bold;
+            }
     		p{
     			margin:4px 0 0 ;
     			font-family: $f-sans-serif-text;
     			color:#aaa;
     			font-size:14px;
                 line-height: 1.25em;
-
     		}
     	}
     	.question-container{
@@ -307,6 +348,7 @@ body {
     	right:10px;
     	padding:0 10px;
     	box-shadow: 0 2px 2px rgba(0,0,0,0.2);
+        display:none;
     	p{
     		font-family: $f-sans-serif-text;
     		font-size:12px;
@@ -381,10 +423,8 @@ body {
             #header-details-container{
                 margin-left:-20px;
                 margin-right:-20px;
-                p{
-                    margin-left:20px;
-                    margin-right:20px;
-                }
+                padding-left:20px;
+                padding-right:20px;
             }
         }
 
@@ -394,12 +434,6 @@ body {
 
 	    #questions-container{
 	    	.question-container{
-	    		&.order-0{
-	    			margin-right:80px;
-	    		}
-	    		&.order-1{
-	    			margin-left:80px;
-	    		}
 	    		h3{
 	    			font-size:20px;
 	    		}
@@ -430,18 +464,39 @@ body {
 
     @media ( min-width: breakpoints(phablet) ) {
         #interactive-header{
-        	h1{
-        		font-size:24px;
-        	}
+            h1{
+                font-size:20px;
+            }
         	h2{
         		font-size:60px;
         	}
-        }
+            #header-details-container{
+                padding-top:24px;
+                p{
+                    font-size:36px;
+                    line-height:42px;
+                }
+                #total-number{
+                    font-size:54px;
+                }
+            }
 
+        }
         #questions-container{
-        	margin-right:240px;
+            #title-question{
+                padding-top:24px;
+                max-width: 620px;
+                h5,h2{
+                    font-size:24px;
+                }
+            }
         }
-
+        .shareButtons{
+            button{
+                width:36px;
+                height:36px;
+            }
+        }
 	    .treatment-list{
     		li{
     			font-size:16px;
@@ -478,7 +533,6 @@ body {
 
     @media ( min-width: breakpoints(tablet) ) { //740px
 		#questions-container{
-	    	max-width:460px;
 	    	.question-container .question-intro{
 	    		padding-left:20px;
 	    		padding-right:20px;
@@ -488,34 +542,51 @@ body {
 
     @media ( min-width: breakpoints(desktop) ) {
     	#interactive-header{
-    		h1,h2,#intro-text{
+    		h1,h2,#intro-text,.shareButtons{
     			margin-left:80px;
-                max-width:540px;
+                max-width:620px;
     		}
             #header-details-container{
-                padding-top:12px;
+                p{
+                    margin-left:80px;
+                }
+                #total-number{
+                    margin-left:80px;
+                }
             }
-            #header-details-container p{
-                font-size:20px;
-                margin-left:100px;
-                max-width:540px;
+            h1{
+                font-size:24px;
             }
+            
             #intro-text{
-                margin-top:36px;
+                margin-top:24px;
+                font-size:18px;
             }
     	}
     	#questions-container{
-	    	max-width:620px;
+	    	max-width:780px;
 	    	#title-question{
-	    		padding-left:80px;
 	    		margin-bottom:48px;
+                margin-left:80px;
 	    		h2{
-                    font-size:20px;
+                    font-size:24px;
 	    		}
+                h5{
+                    font-size:24px;
+                }
 	    		p{
 	    			font-size:16px;
 	    		}
 	    	}
+            .question-container{
+                max-width:620px;
+                &.order-0{
+                    margin-left:80px;
+                }
+                &.order-1{
+                    margin-left:60px;
+                }
+            }
 	    	.treatment-list{
 	    		column-count:2;
 	    		column-gap: 40px;
@@ -551,35 +622,51 @@ body {
 
     @media ( min-width: breakpoints(leftCol) ) { //1140px
     	#interactive-header{
-           
+            padding-top:18px;
     		h2{
-    			font-size:60px;
-    			max-width:680px;
+                margin-left:160px;
+                max-width:700px;
     		}
-
-            #intro-text{
-                max-width:680px;
-                font-size:20px;
+            h1{
+                position:absolute;
+                left:20px;
+                margin:4px 0 0;
+                width:140px;
+            }
+            .shareButtons{
+                margin-left:160px;
             }
 
-            #header-details-container p{
-                font-size:24px;
-                max-width:680px;
-                select{
-                    margin-bottom:8px;
+            #intro-text{
+                margin-left:160px;
+                max-width: 700px;
+            }
+
+            #header-details-container{
+                p{
+                    margin-left:160px;
+                    max-width: 700px;
+                    select{
+                        margin-bottom:8px;
+                    }
+                }
+                #total-number{
+                    margin-left:160px;
                 }
             }
     	}
     	#questions-container{
-	    	max-width:780px;
-
+            max-width:none;
             #title-question{
+                margin-left:160px;
+                max-width:700px;
                 h2{
                     font-size:24px;
                 }
             }
 
 	    	.question-container{
+                max-width: 700px;
 	    		h3{
 	    			font-size:24px;
 	    		}
@@ -601,6 +688,12 @@ body {
 	    			padding-left:20px;
 	    			padding-right:20px;
 	    		}
+                &.order-0{
+                    margin-left:160px;
+                }
+                &.order-1{
+                    margin-left:140px;
+                }
 	    	}
 	    	.treatment-list{
 	    		li{
@@ -642,13 +735,31 @@ body {
     		h2,#intro-text{
     			margin-left:240px;
     		}
-            #header-details-container p{
-                margin-left:260px;
+            .shareButtons{
+                margin-left:240px;
+            }
+            #header-details-container{
+                p{
+                    margin-left:240px;
+                }
+                #total-number{
+                    margin-left:240px;
+                }
             }
     	}
 
     	#questions-container{
-	    	margin-left:160px;
+            #title-question{
+                margin-left:240px;
+            }
+            .question-container{
+                &.order-0{
+                    margin-left:240px;
+                }
+                &.order-1{
+                    margin-left:220px;
+                }
+            }
 	    }
 	    #receipt-holder{
 	    	right:20px;

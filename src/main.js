@@ -94,14 +94,24 @@ function calculateReceipt(){
 function boot(el) {
 	el.innerHTML = base;
 	
-	
-
 	var key = '1LMCyB22vqx-dF3n4zAGEra7eNZX3duWstDbZf-ST2js';
 	var url = 'http://interactive.guim.co.uk/docsdata-test/' + key + '.json';
+
 	getJSON(url, function(resp) {
 		initHeader(resp);
 		processData(resp,el);
+		initShare();
 	});
+}
+
+function initShare(){
+	var shareButtons = document.querySelectorAll('.shareButtons button');
+	for(i=0; i<shareButtons.length; i++){
+		shareButtons[i].addEventListener('click',function(e){
+			console.log(e);
+			share(e.target.className);
+		})
+	}
 }
 
 function initHeader(resp){
@@ -128,7 +138,15 @@ function initHeader(resp){
 		var ageCost = selection.gender === "woman" ? costBand["female"] : costBand["male"];
 
 		var totalNumber = Number(ageCost) + (gpCost * Number(selection.visits))
-		document.querySelector('#total-number').innerHTML = "£" + Math.round(totalNumber);
+
+		var totalString = String(Math.round(totalNumber));
+
+	    var rgx = /(\d+)(\d{3})/;
+	    while (rgx.test(totalString)) {
+            totalString = totalString.replace(rgx, '$1' + ',' + '$2');
+	    }
+
+		document.querySelector('#total-number').innerHTML = "£" + totalString;
 	}
 }
 
@@ -159,5 +177,39 @@ var checkReceiptPos = throttle(function(){
     	sticky = false;
     }
 },{delay:100})
+
+function share(platform){
+	var shareWindow;
+    var twitterBaseUrl = "http://twitter.com/share?text=";
+    var facebookBaseUrl = "https://www.facebook.com/dialog/feed?display=popup&app_id=741666719251986&link=";
+    var articleUrl = "http://gu.com/p/4df2n";
+    var shareUrl = articleUrl;
+
+    var message = "lalala"
+    
+    var facebookImage = "";
+    var twitterImage = "";
+     
+    if(platform === "twitter"){
+        shareWindow = 
+            twitterBaseUrl + 
+            encodeURIComponent(message + twitterImage) + 
+            "&url=" + 
+            encodeURIComponent(shareUrl + '/stw')   
+    }else if(platform === "facebook"){
+        shareWindow = 
+            facebookBaseUrl + 
+            encodeURIComponent(shareUrl) + 
+            "&picture=" + 
+            encodeURIComponent(facebookImage) + 
+            "&redirect_uri=http://www.theguardian.com";
+    }else if(platform === "mail"){
+        shareWindow =
+            "mailto:" +
+            "?subject=" + message +
+            "&body=" + shareUrl 
+    }
+    window.open(shareWindow, platform + "share", "width=640,height=320");
+}
 
 module.exports = { boot: boot };
