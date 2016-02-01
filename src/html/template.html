@@ -1,3 +1,27 @@
+<div id="receipt-holder" class="{{#if receipt.total > 0}}receipt-active{{/if}}">
+	<div id="receipt-container" class="{{#if elOffset < 10}}sticky{{/if}}">
+		<div id="total-number">
+			<p>Total minimal cost of treatments</p>
+			<h5>£{{format(receipt.total)}}</h5>
+		</div>
+		<div id="total-breakdown">
+			<ul class="breakdown-list">
+			{{#each content.procedures}}
+				{{#each treatments}}
+					<!-- treatment -->
+					{{#if added}}
+						<li>
+							<span class="breakdown-name">{{{name}}}</span>
+							<span class="breakdown-price">£{{format(cost)}}</span>
+						</li>	
+					{{/if}}
+				{{/each}}
+			{{/each}}
+			</ul>
+		</div>
+	</div>
+</div>
+
 <div id="questions-container">
 	<div id="title-question">
 		<h5 class="section-header">Specific treatments</h5>
@@ -23,28 +47,4 @@
 			</div>
 		</div>
 	{{/each}}
-</div>
-
-<div id="receipt-holder" class="{{#if receipt.total > 0}}receipt-active{{/if}}">
-	<div id="receipt-container" class="{{#if elOffset < 10}}sticky{{/if}}">
-		<div id="total-number">
-			<p>Total cost of treatments</p>
-			<h5>£{{format(receipt.total)}}</h5>
-		</div>
-		<div id="total-breakdown">
-			<ul class="breakdown-list">
-			{{#each content.procedures}}
-				{{#each treatments}}
-					<!-- treatment -->
-					{{#if added}}
-						<li>
-							<span class="breakdown-name">{{{name}}}</span>
-							<span class="breakdown-price">£{{format(cost)}}</span>
-						</li>	
-					{{/if}}
-				{{/each}}
-			{{/each}}
-			</ul>
-		</div>
-	</div>
 </div>

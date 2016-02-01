@@ -60,7 +60,6 @@ function initLayout(data, el) {
 	})
 
 	app.on('toggleTreatment',function(e){
-		console.log(e.keypath);
 		var path = e.keypath + ".added";
 		var newState = e.context.added ? false : true;
 
@@ -85,7 +84,7 @@ function calculateReceipt(){
 	})
 
 	selectedTreatments.forEach(function(treatment){
-		total += Number(treatment.cost);
+		total += Number(treatment.minCost);
 	})
 
 	app.set('receipt.total', total);
@@ -116,10 +115,20 @@ function initShare(){
 
 function initHeader(resp){
 	var selectEls = document.querySelectorAll('.action-sentence select');
+	var genderButtons = document.querySelectorAll('.action-sentence #gender-select button');
 	var selection = {
-		"gender": "woman",
+		"gender": undefined,
 		"age": "25 to 29",
 		"visits": "6"
+	}
+
+	for(i=0; i<genderButtons.length; i++){
+		genderButtons[i].addEventListener('click',function(e){
+			selection["gender"] = e.target.getAttribute('data-value');
+			genderButtons[0].id = ""; genderButtons[1].id = "";
+			e.target.id = "selected";
+			calculateAverage();
+		})
 	}
 
 	for(i=0; i<selectEls.length; i++){
@@ -128,25 +137,30 @@ function initHeader(resp){
 			calculateAverage();
 		})
 	}
+
 	calculateAverage();
 
 	function calculateAverage(){
-		var gpCost = 59.9;
-		var costBand = resp.sheets.conversiontable.filter(function(cost){
-			return selection.age === cost.age
-		})[0]
-		var ageCost = selection.gender === "woman" ? costBand["female"] : costBand["male"];
+		if(selection.gender && selection.age && selection.visits){
+			var gpCost = 59.9;
+			var costBand = resp.sheets.conversiontable.filter(function(cost){
+				return selection.age === cost.age
+			})[0]
+			var ageCost = selection.gender === "woman" ? costBand["female"] : costBand["male"];
 
-		var totalNumber = Number(ageCost) + (gpCost * Number(selection.visits))
+			var totalNumber = Number(ageCost) + (gpCost * Number(selection.visits))
 
-		var totalString = String(Math.round(totalNumber));
+			var totalString = String(Math.round(totalNumber));
 
-	    var rgx = /(\d+)(\d{3})/;
-	    while (rgx.test(totalString)) {
-            totalString = totalString.replace(rgx, '$1' + ',' + '$2');
-	    }
+		    var rgx = /(\d+)(\d{3})/;
+		    while (rgx.test(totalString)) {
+	            totalString = totalString.replace(rgx, '$1' + ',' + '$2');
+		    }
 
-		document.querySelector('#total-number').innerHTML = "£" + totalString;
+			document.querySelector('#total-number').innerHTML = "£" + totalString;
+		}else{
+			document.querySelector('#total-number').innerHTML = "£---";
+		}
 	}
 }
 
@@ -155,9 +169,15 @@ function processData(resp,el){
 		question.treatments = [];
 		question.total =  0;
 		question.treatments = resp.sheets.treatments.filter(function(treatment){
+			if(isNaN(treatment.cost)){
+				treatment.minCost = treatment.cost.split('-')[0];
+			}else{
+				treatment.minCost = treatment.cost;
+			}
+
 			if(question.id === treatment.id){
 				treatment.added = false
-				question.total += Number(treatment.cost);
+				question.total += Number(treatment.minCost);
 				return true
 			}
 		})
