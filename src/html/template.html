@@ -25,14 +25,14 @@
 <div id="questions-container">
 	<div id="title-question">
 		<h5 class="section-header">Specific treatments</h5>
-		<h2>Specific treatments can have a much higher cost than this average. Find out how much the health interventions you may have experienced are worth in our list of 100 common hospital procedures.</h2>
+		<h2>Specific treatments can have a much higher cost than this average. Find out how much the health interventions or disorders you may have experienced are worth in our list of 100 common hospital procedures.</h2>
 		<p>This is confidential information, and your data will not be saved</p>
 	</div>
 	{{#each content.procedures:i}}
 		<div class="question-container order-{{i%2}} state-{{active}}">
 			<div class="question-intro" on-click="toggleQuestion">
 				<h3>{{question}}</h3>
-				<h4>eg. Ear infection, eye disorder</h4>
+				<h4>eg. {{eg}}</h4>
 			</div>
 			
 			<div class="hidden-container">
@@ -48,3 +48,8 @@
 		</div>
 	{{/each}}
 </div>
+
+<footer id="end-container">
+
+
+</footer>
