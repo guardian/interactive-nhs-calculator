@@ -10,6 +10,8 @@ $nhsGreen: #5BC4BF;
 $nhsDarkGreen: #45B7B1;
 
 $guardianBlue: #00427A;
+$guardianGrey: #F6F6F6;
+
 $nhsLightBlue: #228ABC;
 $nhsDarkerBlue: #177CAC;
 $nhsDarkBlue: #146388;
@@ -80,6 +82,9 @@ figure.interactive{
         padding:0 10px;
         margin:0 auto;
         position:relative;
+    }
+    header{
+        // display:none;
     }
     header#title-header{
     	background-color: $nhsGreen;
@@ -200,7 +205,6 @@ figure.interactive{
     }
 
     #questions-container{
-
     	#title-question{
     		margin-bottom:24px;
             padding-top:12px;
@@ -226,18 +230,21 @@ figure.interactive{
     		transition: min-height 0.6s;
     		position: relative;
             overflow: hidden;
+            margin-bottom:6px;
 
     		&.order-0{
-    			background-color:$nhsDarkGrey;
-    			margin-right:10px;
+    			background-color:$guardianGrey;
+                border-top:1px solid #dfdfdf;
+    			// margin-right:10px;
     		}
     		&.order-1{
-    			background-color:$nhsGrey;
-    			margin-left:10px;
+    			background-color:$nhsLightGrey;
+                border-top:1px solid #C1CFD6;
+    			// margin-left:10px;
     		}
     		.question-intro{
-    			color:$nhsWhite;
-    			padding:24px 10px;
+    			color:$nhsDarkGrey;
+    			padding:6px 6px 24px;
     			position: relative;
     			cursor: pointer;
     			&:hover{
@@ -250,18 +257,20 @@ figure.interactive{
     			font-size:16px;
     			line-height:1.1em;
     			margin:0;
+                font-weight:400;
     		}
     		h4{
     			margin:0;
     			font-family:$f-sans-serif-text;
     			font-size:12px;
-    			font-weight:normal;
+    			font-weight:bold;
+                opacity:0.4;
     		}
     		.hidden-container{
     			opacity:0;
     			position: absolute;
     			z-index:-2;
-    			padding:1px 10px 12px;
+    			padding:1px 6px 12px;
                 width:100%;
     			ul{
     				margin:0;
@@ -270,17 +279,16 @@ figure.interactive{
     	}
     	.state-expanded{
     		&.order-0{
-    			background-color: darken($nhsDarkGrey,5%);
+    			background-color: darken($guardianGrey,5%);
     		}
     		&.order-1{
-    			background-color: darken($nhsGrey,5%);
+    			background-color: darken($nhsLightGrey,5%);
     		}
 
     		.hidden-container{
     			animation: appear 1s;
     			z-index:1;
     			opacity:1;
-    			// position:relative;
     		}
     		.question-radio-button{
     			border-color: $nhsDarkBlue;
@@ -308,13 +316,13 @@ figure.interactive{
     		padding:0;
     		list-style:none;
     		li{
-    			color:$nhsWhite;
-    			font-size:14px;
-    			font-family: $f-serif-headline;
+    			color:$nhsDarkGrey;
+    			font-size:12px;
+    			font-family: $f-sans-serif-text;
     			font-weight:bold;
     			line-height:1em;
     			padding: 12px 0;
-    			border-top:1px solid rgba(255,255,255,0.1);
+    			border-top:1px solid rgba(0,0,0,0.1);
     			cursor:pointer;
     			position: relative;
     			
@@ -332,23 +340,24 @@ figure.interactive{
     			.treatment-radio-button{
     				width:12px;
     				height:12px;
-    				border-radius:10px;
-    				border:1px solid $nhsDarkBlue;
+    				// border-radius:10px;
+    				// border:1px solid $nhsDarkBlue;
     				display:block;
-    				background-color:#fff;
+    				// background-color:#fff;
     				float:left;
     				left:0;
     				position: absolute;
                     top:50%;
                     margin-top:-6px;
+                    // display:none;
     				&:before{
     					display:block;
     					width:6px;
     					height:6px;
     					border-radius:6px;
     					content:'';
-    					margin-left:2px;
-    					margin-top:2px;
+    					margin-left:0;
+    					margin-top:3px;
     					background-color:$nhsDarkBlue;
     					transform: scale(0);
     					transition:transform 100ms;
@@ -359,6 +368,7 @@ figure.interactive{
     				.treatment-radio-button:before{
     					transform: scale(1);
     				}
+                    color:$nhsDarkBlue;
     			}
     			.treatment-price{
     				position: absolute;
@@ -370,9 +380,9 @@ figure.interactive{
     			}
     			.treatment-name{
     				padding-right:60px;
-    				padding-left:22px;
+    				padding-left:12px;
     				display:inline-block;
-                    font-weight:500;
+                    font-weight:900;
                     span{
                         font-weight:100;
                     }
@@ -483,23 +493,23 @@ figure.interactive{
 	    			font-size:14px;
 	    		}
                 &.order-0{
-                    margin-right:20px;
+                    // margin-right:20px;
                 }
                 &.order-1{
-                    margin-left:20px;
+                    // margin-left:20px;
                 }
 	    	}
 	    	.treatment-list{
 	    		li{
-	    			font-size:16px;
+	    			font-size:14px;
                     padding:14px 0;
 	    			.treatment-radio-button{
 	    				width:14px;
 	    				height:14px;
                         margin-top:-7px;
 	    				&:before{
-	    					width:8px;
-	    					height:8px;
+	    					width:6px;
+	    					height:6px;
 	    				}
 	    			}
                     .treatment-price{
@@ -552,6 +562,15 @@ figure.interactive{
                     font-size:24px;
                 }
             }
+            .question-container{
+                .treatment-list{
+                    column-count:2;
+                    column-gap: 20px;
+                    li{
+                        -webkit-column-break-inside: avoid;
+                    }
+                }
+            }
         }
         .shareButtons{
             button{
@@ -561,7 +580,7 @@ figure.interactive{
         }
 	    .treatment-list{
     		li{
-    			font-size:16px;
+    			font-size:14px;
     			padding: 14px 0;
     		}
     	}
@@ -572,19 +591,12 @@ figure.interactive{
 	    	.question-container {
                 max-width:620px;
                 .question-intro{
-    	    		padding-left:20px;
-    	    		padding-right:20px;
+    	    		// padding-left:20px;
+    	    		// padding-right:20px;
     	    	}
                 .hidden-container{
-                    padding-left:20px;
-                    padding-right:20px;
-                }
-            }
-            .treatment-list{
-                column-count:2;
-                column-gap: 40px;
-                li{
-                    -webkit-column-break-inside: avoid;
+                    // padding-left:20px;
+                    // padding-right:20px;
                 }
             }
 	    }
@@ -638,7 +650,7 @@ figure.interactive{
                     margin-left:80px;
                 }
                 &.order-1{
-                    margin-left:60px;
+                    margin-left:80px;
                 }
             }
 	    }
@@ -720,7 +732,7 @@ figure.interactive{
 	    			font-size:24px;
 	    		}
 	    		.question-intro{
-	    			padding:36px 20px 36px 20px;
+	    			padding:12px 12px 42px 12px;
 	    		}
 	    		.question-radio-button{
 	    			width:31px;
@@ -734,35 +746,35 @@ figure.interactive{
 	    			}
 	    		}
 	    		.hidden-container{
-	    			padding-left:20px;
-	    			padding-right:20px;
+	    			padding-left:12px;
+	    			padding-right:12px;
 	    		}
                 &.order-0{
                     margin-left:160px;
                 }
                 &.order-1{
-                    margin-left:140px;
+                    margin-left:160px;
                 }
 	    	}
 	    	.treatment-list{
 	    		li{
 	    			padding:16px 0;
-	    			font-size:18px;
+	    			font-size:16px;
 	    			.treatment-price{
 	    				top:18px;
 	    			}
 	    			.treatment-name{
 	    				padding-top:2px;
-	    				padding-left:30px;
+	    				// padding-left:30px;
 	    			}
 	    			.treatment-radio-button{
 	    				width:18px;
 	    				height:18px;
 	    				border-radius:20px;
-                        margin-top:-9px;
+                        margin-top:-4px;
 	    				&:before{
-	    					width:12px;
-	    					height:12px;
+	    					width:6px;
+	    					height:6px;
 	    					margin-left:2px;
 	    					margin-top:2px;
 	    				}
@@ -806,7 +818,7 @@ figure.interactive{
                     margin-left:240px;
                 }
                 &.order-1{
-                    margin-left:220px;
+                    margin-left:240px;
                 }
             }
 	    }

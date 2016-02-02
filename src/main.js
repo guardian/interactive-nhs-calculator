@@ -159,7 +159,7 @@ function initHeader(resp){
 
 			document.querySelector('#total-number').innerHTML = "£" + totalString;
 		}else{
-			document.querySelector('#total-number').innerHTML = "£---";
+			document.querySelector('#total-number').innerHTML = "£";
 		}
 	}
 }
