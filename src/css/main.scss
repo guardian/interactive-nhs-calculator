@@ -548,6 +548,12 @@ figure.interactive{
                 }
             }
         }
+        #disclaimer{
+            font-family: $f-sans-serif-text;
+            font-size:12px;
+            margin-top:36px;
+            color:$nhsGrey;
+        }
         
     }
     @media(min-width:breakpoints(mobileLandscape)){
