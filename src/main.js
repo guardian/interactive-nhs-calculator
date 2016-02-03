@@ -13,6 +13,7 @@ var Ractive = require('ractive');
 var app;
 var receiptContainer;
 var sticky = false;
+var bottomHidden = false;
 var dataset = {procedures:[]};
 var rawData;
 
@@ -208,6 +209,7 @@ function processData(resp,el){
 
 var checkReceiptPos = throttle(function(){
 	var elOffset = receiptContainer.getBoundingClientRect().top;
+	var footerOffset = document.querySelector('#summary-container').getBoundingClientRect().top;
     if(elOffset < 10 && !sticky){
     	document.querySelector('#receipt-container').className = " sticky"
     	sticky = true;
@@ -215,6 +217,15 @@ var checkReceiptPos = throttle(function(){
     	document.querySelector('#receipt-container').className = ""
     	sticky = false;
     }
+
+    if(footerOffset < (window.innerHeight/1.5) && !bottomHidden){
+    	document.querySelector('#receipt-container').className = "";
+    	bottomHidden = true;
+    }else if(footerOffset > (window.innerHeight/1.5) && bottomHidden){
+    	document.querySelector('#receipt-container').className = " sticky";
+    	bottomHidden = false;
+    }
+
 },{delay:100})
 
 function share(platform){

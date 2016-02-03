@@ -83,9 +83,6 @@ figure.interactive{
         margin:0 auto;
         position:relative;
     }
-    header{
-        // display:none;
-    }
     header#title-header{
     	background-color: $nhsGreen;
     	padding:1px 0 54px;
@@ -172,14 +169,17 @@ figure.interactive{
                 border:none;
                 height:28px;
                 padding: 0 18px;
-                background-color:rgba(0,0,0,0.2);
-                color:rgba(255,255,255,0.6);
+                background-color:rgba(0,0,0,0.1);
+                color:rgba(255,255,255,0.8);
                 font-family:$f-sans-serif-text;
                 font-size:14px;
                 border-radius:20px;
                 line-height:1em;
                 vertical-align: top;
                 cursor: pointer;
+                &:hover{
+                    background-color:rgba(0,0,0,0.3);
+                }
                 &#selected{
                     background-color:#fff;
                     color:#448B87;
@@ -297,12 +297,6 @@ figure.interactive{
     			z-index:1;
     			opacity:1;
     		}
-    		.question-radio-button{
-    			border-color: $nhsDarkBlue;
-    			&:before{
-    				transform: scale(1);
-    			}
-    		}
     		.question-intro{
     			&:hover{
     				h3{
@@ -403,7 +397,6 @@ figure.interactive{
         position:absolute;
         right:10px;
         width:220px;
-        display: none;
     }
     #receipt-container{
     	position: fixed;
@@ -535,6 +528,10 @@ figure.interactive{
                 display: inline-block;
                 vertical-align: middle;
                 margin:0;
+                font-size:0;
+                button{
+                    margin-right:4px;
+                }
             }
             #question-step-2{
                 display:none;
@@ -806,17 +803,7 @@ figure.interactive{
 	    		.question-intro{
 	    			padding:12px 12px 42px 12px;
 	    		}
-	    		.question-radio-button{
-	    			width:31px;
-	    			height:31px;
-	    			margin-top:-16px;
-	    			&:before{
-	    				margin-left:3px;
-	    				margin-top:3px;
-	    				width:23px;
-	    				height:23px;
-	    			}
-	    		}
+	    		
 	    		.hidden-container{
 	    			padding-left:12px;
 	    			padding-right:12px;
