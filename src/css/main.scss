@@ -330,7 +330,7 @@ figure.interactive{
     			line-height:1em;
     			padding: 12px 0;
     			border-top:1px solid rgba(0,0,0,0.1);
-                transition: 200ms background-color,200ms color;
+                transition: 200ms background-color, 200ms color;
     			cursor:pointer;
     			position: relative;
     			
@@ -403,6 +403,7 @@ figure.interactive{
         position:absolute;
         right:10px;
         width:220px;
+        display: none;
     }
     #receipt-container{
     	position: fixed;
@@ -484,6 +485,71 @@ figure.interactive{
             opacity:1;
         }
     }
+
+    footer#summary-container{
+        margin-top:30px;
+        padding-bottom:48px;
+        h5{
+            font-family: $f-serif-headline;
+            font-size:21px;
+            line-height: 27px;
+            margin:0 0 30px;
+            font-weight:500;
+            color: $nhsDarkGrey;
+            &:before{
+                height:1px;
+                width:70px;
+                display:block;
+                content:'';
+                background-color: $nhsDarkGrey;
+                margin-bottom:6px;
+            }
+            span{
+                font-weight:100;
+            }
+        }
+        #share-question{
+            p{
+                font-family: $f-serif-headline;
+                font-weight:bold;
+                margin:0;
+                color: $nhsDarkGrey;
+            }
+            button{
+                height:36px;
+                padding:0 18px;
+                color:#fff;
+                background-color: $nhsDarkGrey;
+                font-weight:bold;
+                font-family: $f-serif-headline;
+                display:inline-block;
+                border:none;
+                font-size:16px;
+                border-radius:40px;
+                outline:none;
+                &:hover{
+                    background-color: darken($nhsDarkGrey,10%);
+                }
+            }
+            .shareButtons{
+                display: inline-block;
+                vertical-align: middle;
+                margin:0;
+            }
+            #question-step-2{
+                display:none;
+            }
+            &.answer-yes{
+                #question-step-1{
+                    display:none;
+                }
+                #question-step-2{
+                    display:block;
+                }
+            }
+        }
+        
+    }
     @media(min-width:breakpoints(mobileLandscape)){
         .header-wrapper{
             padding:0 20px;
@@ -530,6 +596,13 @@ figure.interactive{
         #receipt-holder{
             right:20px;
         }   
+        footer#summary-container{
+            margin-top:48px;
+            #share-question p{
+                display: inline-block;
+                margin-right:6px;
+            }
+        }
     }
 
     @media ( min-width: breakpoints(phablet) ) {
@@ -566,7 +639,6 @@ figure.interactive{
         #questions-container{
             #title-question{
                 padding-top:18px;
-                max-width: 620px;
                 h5,h2{
                     font-size:24px;
                 }
@@ -593,22 +665,16 @@ figure.interactive{
     			padding: 14px 0;
     		}
     	}
+        footer#summary-container{
+            h5{
+                font-size:24px;
+                line-height: 30px;
+            }
+        }
     }
 
     @media ( min-width: breakpoints(tablet) ) { //740px
-		#questions-container{
-	    	.question-container {
-                max-width:620px;
-                .question-intro{
-    	    		// padding-left:20px;
-    	    		// padding-right:20px;
-    	    	}
-                .hidden-container{
-                    // padding-left:20px;
-                    // padding-right:20px;
-                }
-            }
-	    }
+
     }
 
     @media ( min-width: breakpoints(desktop) ) {
@@ -640,10 +706,10 @@ figure.interactive{
         }
 
     	#questions-container{
-	    	max-width:780px;
+	    	max-width:620px;
+            margin-left:80px;
 	    	#title-question{
 	    		margin-bottom:48px;
-                margin-left:80px;
 	    		h2{
                     font-size:24px;
 	    		}
@@ -654,14 +720,6 @@ figure.interactive{
 	    			font-size:16px;
 	    		}
 	    	}
-            .question-container{
-                &.order-0{
-                    margin-left:80px;
-                }
-                &.order-1{
-                    margin-left:80px;
-                }
-            }
 	    }
         #receipt-holder{
             top:240px;
@@ -727,17 +785,15 @@ figure.interactive{
             }
         }
     	#questions-container{
-            max-width:none;
+            max-width:700px;;
+            margin-left:160px;
             #title-question{
-                margin-left:160px;
-                max-width:700px;
                 h2{
                     font-size:24px;
                 }
             }
 
 	    	.question-container{
-                max-width: 700px;
 	    		h3{
 	    			font-size:24px;
 	    		}
@@ -759,12 +815,6 @@ figure.interactive{
 	    			padding-left:12px;
 	    			padding-right:12px;
 	    		}
-                &.order-0{
-                    margin-left:160px;
-                }
-                &.order-1{
-                    margin-left:160px;
-                }
 	    	}
 	    	.treatment-list{
 	    		li{
@@ -795,6 +845,13 @@ figure.interactive{
         #receipt-holder{
             top:240px;
         }
+        footer#summary-container{
+            margin-top:60px;
+            h5{
+                font-size:30px;
+                line-height: 36px;
+            }
+        }
     }
 
     @media ( min-width: breakpoints(wide) ) {
@@ -820,17 +877,7 @@ figure.interactive{
         }
 
     	#questions-container{
-            #title-question{
-                margin-left:240px;
-            }
-            .question-container{
-                &.order-0{
-                    margin-left:240px;
-                }
-                &.order-1{
-                    margin-left:240px;
-                }
-            }
+            margin-left:240px;
 	    }
 	    #receipt-holder{
             width:300px;

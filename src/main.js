@@ -23,7 +23,8 @@ function initLayout(data, el) {
       data: {
       	content: data,
       	receipt: {
-      		total: 0
+      		total: 0,
+      		amount:0
       	},
       	elOffset: 200,
       	format: function(cost){
@@ -40,6 +41,9 @@ function initLayout(data, el) {
       			}
       		}
       		return cost
+      	},
+      	shareQuestionVisible: function(){
+      		return Math.random() < 0.5
       	}
       }
     });
@@ -67,6 +71,10 @@ function initLayout(data, el) {
 		calculateReceipt();
 	});
 
+	app.on('answerQuestion',function(e,answer){
+		app.set('shareAnswer',answer)
+	})
+
 	receiptContainer = document.querySelector('#receipt-holder');
 	window.onscroll = function(){ checkReceiptPos(); }
 }
@@ -85,6 +93,17 @@ function calculateReceipt(){
 
 	selectedTreatments.forEach(function(treatment){
 		total += Number(treatment.minCost);
+	})
+
+	var orderedTreatments = selectedTreatments.sort(function(a, b) {
+	    return a.minCost - b.minCost;
+	});
+
+	app.set('receipt',{
+		total: total,
+		min: orderedTreatments[0],
+		max: orderedTreatments[orderedTreatments.length-1],
+		amount: orderedTreatments.length
 	})
 
 	app.set('receipt.total', total);

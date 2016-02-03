@@ -28,6 +28,7 @@
 		<h2>Specific treatments can have a much higher cost than this average. Find out how much the health interventions or disorders you may have experienced are worth in our list of 100 common hospital procedures.</h2>
 		<p>This is confidential information, and your data will not be saved</p>
 	</div>
+	<div id="question-blocks">
 	{{#each content.procedures:i}}
 		<div class="question-container order-{{i%2}} state-{{active}}">
 			<div class="question-intro" on-click="toggleQuestion">
@@ -47,9 +48,25 @@
 			</div>
 		</div>
 	{{/each}}
+	</div>
+	<footer id="summary-container">
+		{{#if receipt.amount > 0}}<h5>The {{#if receipt.amount > 1}}{{receipt.amount}} treatments{{else}} treatment{{/if}} you have selected cost £{{format(receipt.total)}} to the NHS. {{#if receipt.amount > 1}}<span id="summary-breakdown">These costs range from £{{format(receipt.min.cost)}} for {{{receipt.min.name}}} to £{{format(receipt.max.cost)}} for {{{receipt.max.name}}}</span>{{/if}}</h5>{{/if}}
+		<div id="summary-share">
+			<div id="share-question" class="answer-{{shareAnswer}} {{#if shareQuestionVisible()}}answer-yes{{/if}}">
+				<div id="question-step-1">
+					<p>Was this story useful for you?</p>
+					<button class="question-yes" on-click="answerQuestion:yes">Yes</button>
+					<button class="question-no" on-click="answerQuestion:no">No</button>
+				</div>
+				<div id="question-step-2">
+					<p>Share this story</p>
+					<div class="shareButtons">
+		                <button class="twitter"></button>
+		                <button class="facebook"></button>
+		                <button class="mail"></button>
+		            </div>
+				</div>
+			</div>
+	</footer>
 </div>
 
-<footer id="end-container">
-
-
-</footer>
