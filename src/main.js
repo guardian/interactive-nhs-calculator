@@ -235,7 +235,7 @@ function share(platform){
     var articleUrl = "http://gu.com/p/4df2n";
     var shareUrl = articleUrl;
 
-    var message = "lalala"
+    var message = "How much has the NHS spent on you?"
     
     var facebookImage = "";
     var twitterImage = "";
