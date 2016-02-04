@@ -5,6 +5,8 @@
  * ./utils/detect.js	- Device and env detection
  */
 
+var analytics =  require('./utils/guAnalytics');
+// example share call: guAnalytics.track('fbk')
 var getJSON = require('./utils/getjson');
 var throttle = require('./utils/throttle');
 var base = require('./html/base-with-margins.html');
