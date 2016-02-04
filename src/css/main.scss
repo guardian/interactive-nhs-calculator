@@ -136,6 +136,13 @@ figure.interactive{
         background:#7CD0CC;
         padding-bottom:36px;
         padding-top:12px;
+        h5{
+            font-size:20px;
+            line-height: 1em;
+            color:#fff;
+            margin-bottom:0.25em;
+            margin-top:0;
+        }
         p{
             font-family:$f-serif-headline;
             line-height:28px;
@@ -198,7 +205,7 @@ figure.interactive{
             margin-bottom:3px;
             appearance: none;
             border-radius:20px;
-            padding:0 18px 0 10px;
+            padding:0 24px 0 10px;
             background-image: url(/imgs/select_arrow.png);
             background-repeat:no-repeat;
             background-position: right 10px center;
@@ -550,6 +557,12 @@ figure.interactive{
             font-size:12px;
             margin-top:36px;
             color:$nhsGrey;
+            strong{
+                display:block;
+                &:last-child{
+                    margin-top:12px;
+                }
+            }
         }
         
     }
@@ -619,6 +632,9 @@ figure.interactive{
         }
         header#details-header{
             padding-top:18px;
+            h5{
+                font-size:24px;
+            }
             p{
                 font-size:36px;
                 line-height:42px;
@@ -701,7 +717,7 @@ figure.interactive{
     	}
 
         header#details-header{
-            p{
+            h5,p{
                 margin-left:80px;
             }
             #total-number{
@@ -780,7 +796,7 @@ figure.interactive{
             }
     	}
         header#details-header{
-            p{
+            h5,p{
                 margin-left:160px;
                 max-width: 700px;
             }
@@ -862,7 +878,7 @@ figure.interactive{
     	}
 
         header#details-header{
-            p{
+            h5,p{
                 margin-left:240px;
             }
             #total-number{
