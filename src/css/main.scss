@@ -527,6 +527,7 @@ figure.interactive{
                 font-size:16px;
                 border-radius:40px;
                 outline:none;
+                cursor:pointer;
                 &:hover{
                     background-color: darken($nhsDarkGrey,10%);
                 }
@@ -540,14 +541,23 @@ figure.interactive{
                     margin-right:4px;
                 }
             }
-            #question-step-2{
+            #question-step-2,#question-step-3{
                 display:none;
+                min-height:36px;
             }
             &.answer-yes{
                 #question-step-1{
                     display:none;
                 }
                 #question-step-2{
+                    display:block;
+                }
+            }
+            &.answer-no{
+                #question-step-1{
+                    display:none;
+                }
+                #question-step-3{
                     display:block;
                 }
             }

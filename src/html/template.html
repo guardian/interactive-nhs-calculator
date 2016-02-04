@@ -52,7 +52,7 @@
 	<footer id="summary-container">
 		{{#if receipt.amount > 0}}<h5>The {{#if receipt.amount > 1}}{{receipt.amount}} treatments{{else}} treatment{{/if}} you have selected cost £{{format(receipt.total)}} to the NHS. {{#if receipt.amount > 1}}<span id="summary-breakdown">These costs range from £{{format(receipt.min.cost)}} for {{{receipt.min.name}}} to £{{format(receipt.max.cost)}} for {{{receipt.max.name}}}</span>{{/if}}</h5>{{/if}}
 		<div id="summary-share">
-			<div id="share-question" class="answer-{{shareAnswer}} {{#if shareQuestionVisible()}}answer-yes{{/if}}">
+			<div id="share-question" class="answer-{{shareAnswer}} {{#if shareQuestionHidden()}}answer-yes{{/if}}">
 				<div id="question-step-1">
 					<p>Was this story useful for you?</p>
 					<button class="question-yes" on-click="answerQuestion:yes">Yes</button>
@@ -61,10 +61,13 @@
 				<div id="question-step-2">
 					<p>Share this story</p>
 					<div class="shareButtons">
-		                <button class="twitter track-share"></button>
-		                <button class="facebook track-share"></button>
-		                <button class="mail track-share"></button>
+		                <button class="twitter"></button>
+		                <button class="facebook"></button>
+		                <button class="mail"></button>
 		            </div>
+				</div>
+				<div id="question-step-3">
+					<p>Thanks for your feedback</p>
 				</div>
 			</div>
 		</div>

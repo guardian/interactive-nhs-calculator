@@ -5,8 +5,8 @@
  * ./utils/detect.js	- Device and env detection
  */
 
-var analytics =  require('./utils/guAnalytics');
-// example share call: guAnalytics.track('fbk')
+var guAnalytics =  require('./utils/guAnalytics');
+// example share call: guAnalytics.track('facebook')
 var getJSON = require('./utils/getjson');
 var throttle = require('./utils/throttle');
 var base = require('./html/base-with-margins.html');
@@ -45,8 +45,14 @@ function initLayout(data, el) {
       		}
       		return cost
       	},
-      	shareQuestionVisible: function(){
-      		return Math.random() < 0.5
+      	shareQuestionHidden: function(){
+      		if(Math.random() < 0.5){
+      			guAnalytics.track('didn\'t show question before sharing')
+      			return true
+      		}else{
+      			guAnalytics.track('showed question before sharing')
+      			return false
+      		}
       	}
       }
     });
@@ -75,6 +81,7 @@ function initLayout(data, el) {
 	});
 
 	app.on('answerQuestion',function(e,answer){
+		guAnalytics.track('answered question with ' + answer);
 		app.set('shareAnswer',answer)
 	})
 
@@ -129,8 +136,8 @@ function initShare(){
 	var shareButtons = document.querySelectorAll('.shareButtons button');
 	for(i=0; i<shareButtons.length; i++){
 		shareButtons[i].addEventListener('click',function(e){
-			console.log(e);
-			share(e.target.className);
+			var sharePosition = e.target.parentElement.parentElement.className === "header-wrapper" ? "header" : "footer";
+			share(e.target.className,sharePosition);
 		})
 	}
 }
@@ -230,7 +237,7 @@ var checkReceiptPos = throttle(function(){
 
 },{delay:100})
 
-function share(platform){
+function share(platform, sharePosition){
 	var shareWindow;
     var twitterBaseUrl = "http://twitter.com/share?text=";
     var facebookBaseUrl = "https://www.facebook.com/dialog/feed?display=popup&app_id=741666719251986&link=";
@@ -262,6 +269,7 @@ function share(platform){
             "&body=" + shareUrl 
     }
     window.open(shareWindow, platform + "share", "width=640,height=320");
+    guAnalytics.track('shared on ' + platform + ' via ' + sharePosition + ' buttons');
 }
 
 module.exports = { boot: boot };
