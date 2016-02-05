@@ -196,6 +196,30 @@ figure.interactive{
                 }
             }
         }
+        .selectContainer{
+            display:inline-block;
+            width:auto;
+            height:auto;
+            border-radius:20px;
+            background-color:#fff;
+            margin-bottom:3px;
+            position:relative;
+            line-height: 0;
+            vertical-align: bottom;
+            overflow:hidden;
+            &:after{
+                display:block;
+                content:'';
+                width:7px;
+                height:13px;
+                position:absolute;
+                right:10px;
+                top:11px;
+                background-image: url(/imgs/select_arrow.png);
+                background-size:100%;
+                background-repeat:no-repeat;
+            }
+        }
         select{
             font-size:14px;
             border-color:#fff;
@@ -203,16 +227,11 @@ figure.interactive{
             height:20px;
             border:none;
             background:#fff;
-            font-family:$f-sans-serif-text;
-            vertical-align: bottom;
-            margin-bottom:3px;
+            font-family:$f-sans-serif-text; 
             appearance: none;
             border-radius:20px;
-            padding:0 24px 0 10px;
-            background-image: url(/imgs/select_arrow.png);
-            background-repeat:no-repeat;
-            background-position: right 10px center;
-            background-size:7px;
+            padding:0 18px 0 10px;
+            width:115%;
         }
     }
 
@@ -648,7 +667,6 @@ figure.interactive{
             }
             select{
                 height:36px;
-                margin-bottom:4px;
                 font-size:16px;
             }
             #total-number{
