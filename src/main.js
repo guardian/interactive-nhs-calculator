@@ -254,7 +254,7 @@ function share(platform, sharePosition){
 	var shareWindow;
     var twitterBaseUrl = "http://twitter.com/share?text=";
     var facebookBaseUrl = "https://www.facebook.com/dialog/feed?display=popup&app_id=741666719251986&link=";
-    var articleUrl = "http://gu.com/p/4df2n";
+    var articleUrl = "http://gu.com/p/4g8zz";
     var shareUrl = articleUrl;
 
     var message = "How much has the NHS spent on you?"

@@ -12,7 +12,7 @@
 					{{#if added}}
 						<li>
 							<span class="breakdown-name">{{{name}}} {{#if amount > 1 }}(x{{amount}}){{/if}}</span>
-							<span class="breakdown-price">£{{#if amount > 1}} {{format(minCost * amount)}} {{else}} {{format(cost)}} {{/if}}
+							<span class="breakdown-price">£{{#if amount > 1}}{{format(minCost * amount)}} {{else}}{{format(cost)}} {{/if}}
 							</span>
 						</li>	
 					{{/if}}
@@ -41,9 +41,8 @@
 				<ul class="treatment-list">
 					{{#each treatments}}
 						<li class="{{#if added}}added{{/if}}" on-click="toggleTreatment">
-							<span class="treatment-radio-button"></span>
 							<span class="treatment-name"><span class="name-container">{{{name}}}</span> {{#if repeat==="many"}}<input type="number" value="1" min="1" on-change="changeTreatmentAmount" />{{/if}}</span>
-							<span class="treatment-price">£{{#if amount>1}} {{format(amount*minCost)}} {{else}} {{format(cost)}} {{/if}}</span></li>
+							<span class="treatment-price">£{{#if amount>1}}{{format(amount*minCost)}} {{else}}{{format(cost)}} {{/if}}</span></li>
 					{{/each}}
 				</ul>
 			</div>
@@ -68,7 +67,7 @@
 		            </div>
 				</div>
 				<div id="question-step-3">
-					<p>Thanks for your feedback</p>
+					<iframe src="https://guardiannewsampampmedia.formstack.com/forms/untitled_form_19_copy_83" title="Feedback form for Fielding" width="100%" height="400" scrolling="no"></iframe>
 				</div>
 			</div>
 		</div>

@@ -35,6 +35,10 @@ figure.interactive{
 .interactive {
     margin: 0;
 
+    iframe{
+        border:none;
+        max-width:480px;
+    }
     .gv-wrapper{
     	position: relative;
     }
@@ -123,7 +127,6 @@ figure.interactive{
             &:before{
                 height:1px;
                 width:60px;
-                background:#fff;
                 display:block;
                 content:'';
                 margin-bottom:4px;
@@ -296,13 +299,6 @@ figure.interactive{
     		}
     	}
     	.state-expanded{
-    		// &.order-0{
-    		// 	background-color: darken($guardianGrey,5%);
-    		// }
-    		// &.order-1{
-    		// 	background-color: darken($nhsLightGrey,5%);
-    		// }
-
     		.hidden-container{
     			animation: appear 1s;
     			z-index:1;
@@ -334,7 +330,7 @@ figure.interactive{
     			font-weight:bold;
     			line-height:1em;
     			padding: 12px 0;
-                transition: 200ms background-color, 200ms color;
+                transition: 200ms color;
     			cursor:pointer;
     			position: relative;
     			
@@ -348,33 +344,6 @@ figure.interactive{
     					text-decoration: underline;
     				}
     				
-    			}
-    			.treatment-radio-button{
-    				width:12px;
-    				height:12px;
-    				// border-radius:10px;
-    				// border:1px solid $nhsDarkBlue;
-    				display:block;
-    				// background-color:#fff;
-    				float:left;
-    				left:0;
-    				position: absolute;
-                    top:50%;
-                    margin-top:-6px;
-                    display:none;
-    				&:before{
-    					display:block;
-    					width:6px;
-    					height:6px;
-    					border-radius:6px;
-    					content:'';
-    					margin-left:0;
-    					margin-top:3px;
-    					background-color:$nhsDarkBlue;
-    					transform: scale(0);
-    					transition:transform 100ms;
-                        backface-visibility: hidden;
-    				}
     			}
     			&.added{
     				.treatment-radio-button:before{
@@ -390,7 +359,7 @@ figure.interactive{
                     }
                     &:hover{
                         .treatment-name .name-container,.treatment-price{
-                            color:#333;
+                            color:darken($nhsDarkBlue,10%);
                         }
                     }
     			}
@@ -404,13 +373,13 @@ figure.interactive{
     			}
     			.treatment-name{
     				padding-right:60px;
-    				padding-left:2px;
     				display:inline-block;
                     font-weight:900;
                     min-height:24px;
                     .name-container{
                         padding-top:6px;
                         display:inline-block;
+                        margin-right:10px;
                         span{
                             font-weight:100;
                         }
@@ -423,8 +392,8 @@ figure.interactive{
                         border: none;
                         padding: 0 5px;
                         font-family:$f-sans-serif-text;
-                        margin-left:10px;
                         display:none;
+                        border:1px solid rgba(0, 60, 96, 0.3);
                     }
     			}
     		}
@@ -465,7 +434,7 @@ figure.interactive{
     	}
     	#total-number{
     		overflow:hidden;
-    		padding:6px 0 12px;
+    		padding:12px 0 12px;
     	}
 
     	#total-breakdown{
@@ -481,7 +450,7 @@ figure.interactive{
     			font-size:12px;
     			font-family: $f-sans-serif-text;
     			color:#333;
-    			margin:0 0 8px;
+    			margin:0 0 12px;
     			line-height:1em;
 
     			&:first-child{
@@ -634,15 +603,6 @@ figure.interactive{
 	    		li{
 	    			font-size:14px;
                     padding:14px 0;
-	    			.treatment-radio-button{
-	    				width:14px;
-	    				height:14px;
-                        margin-top:-7px;
-	    				&:before{
-	    					width:6px;
-	    					height:6px;
-	    				}
-	    			}
                     .treatment-price{
                         top:20px;
                     }
@@ -795,7 +755,7 @@ figure.interactive{
             opacity: 1;
             padding: 0 10px;
             #total-number{
-                padding: 10px 0 18px;
+                padding: 18px 0 18px;
             }
             #total-breakdown{
                 display:block;  
@@ -872,21 +832,6 @@ figure.interactive{
 	    			// font-size:16px;
 	    			.treatment-price{
 	    				top:22px;
-	    			}
-	    			.treatment-name{
-	    				// padding-left:30px;
-	    			}
-	    			.treatment-radio-button{
-	    				width:18px;
-	    				height:18px;
-	    				border-radius:20px;
-                        margin-top:-4px;
-	    				&:before{
-	    					width:6px;
-	    					height:6px;
-	    					margin-left:2px;
-	    					margin-top:2px;
-	    				}
 	    			}
 	    		}
 	    	}
