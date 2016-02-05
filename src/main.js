@@ -97,36 +97,6 @@ function initLayout(data, el) {
 	window.onscroll = function(){ checkReceiptPos(); }
 }
 
-function calculateReceipt(){
-	var selectedTreatments = [];
-	var total = 0;
-
-	app.get('content.procedures').forEach(function(procedure){
-		procedure.treatments.forEach(function(treatment){
-			if(treatment.added){
-				selectedTreatments.push(treatment);
-			}
-		})
-	})
-
-	selectedTreatments.forEach(function(treatment){
-		total += Number(treatment.minCost) * treatment.amount;
-	})
-
-	var orderedTreatments = selectedTreatments.sort(function(a, b) {
-	    return (a.minCost * a.amount) - (b.minCost * b.amount);
-	});
-
-	app.set('receipt',{
-		total: total,
-		min: orderedTreatments[0],
-		max: orderedTreatments[orderedTreatments.length-1],
-		amount: orderedTreatments.length
-	})
-
-	app.set('receipt.total', total);
-}
-
 function boot(el) {
 	el.innerHTML = base;
 	
@@ -138,16 +108,6 @@ function boot(el) {
 		processData(resp,el);
 		initShare();
 	});
-}
-
-function initShare(){
-	var shareButtons = document.querySelectorAll('.shareButtons button');
-	for(i=0; i<shareButtons.length; i++){
-		shareButtons[i].addEventListener('click',function(e){
-			var sharePosition = e.target.parentElement.parentElement.className === "header-wrapper" ? "header" : "footer";
-			share(e.target.className,sharePosition);
-		})
-	}
 }
 
 function initHeader(resp){
@@ -201,6 +161,16 @@ function initHeader(resp){
 	}
 }
 
+function initShare(){
+	var shareButtons = document.querySelectorAll('.shareButtons button');
+	for(i=0; i<shareButtons.length; i++){
+		shareButtons[i].addEventListener('click',function(e){
+			var sharePosition = e.target.parentElement.parentElement.className === "header-wrapper" ? "header" : "footer";
+			share(e.target.className,sharePosition);
+		})
+	}
+}
+
 function processData(resp,el){
 	resp.sheets.questions.forEach(function(question){
 		question.treatments = [];
@@ -229,6 +199,36 @@ function processData(resp,el){
 	initLayout(dataset, el);
 }
 
+function calculateReceipt(){
+	var selectedTreatments = [];
+	var total = 0;
+
+	app.get('content.procedures').forEach(function(procedure){
+		procedure.treatments.forEach(function(treatment){
+			if(treatment.added){
+				selectedTreatments.push(treatment);
+			}
+		})
+	})
+
+	selectedTreatments.forEach(function(treatment){
+		total += Number(treatment.minCost) * treatment.amount;
+	})
+
+	var orderedTreatments = selectedTreatments.sort(function(a, b) {
+	    return (a.minCost * a.amount) - (b.minCost * b.amount);
+	});
+
+	app.set('receipt',{
+		total: total,
+		min: orderedTreatments[0],
+		max: orderedTreatments[orderedTreatments.length-1],
+		amount: orderedTreatments.length
+	})
+
+	app.set('receipt.total', total);
+}
+
 var checkReceiptPos = throttle(function(){
 	var elOffset = receiptContainer.getBoundingClientRect().top;
 	var footerOffset = document.querySelector('#summary-container').getBoundingClientRect().top;
@@ -249,6 +249,7 @@ var checkReceiptPos = throttle(function(){
     }
 
 },{delay:100})
+
 
 function share(platform, sharePosition){
 	var shareWindow;
