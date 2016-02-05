@@ -249,12 +249,16 @@ figure.interactive{
     		&.order-0{
     			background-color:$guardianGrey;
                 border-top:1px solid #dfdfdf;
-    			// margin-right:10px;
+    			.treatment-list li{
+                    border-top:1px solid rgba(0,0,0,0.1);
+                }
     		}
     		&.order-1{
     			background-color:$nhsLightGrey;
                 border-top:1px solid #C1CFD6;
-    			// margin-left:10px;
+                .treatment-list li{
+        			border-top:1px solid rgba(52,78,86,0.1);
+                }
     		}
     		.question-intro{
     			color:$nhsDarkGrey;
@@ -292,12 +296,12 @@ figure.interactive{
     		}
     	}
     	.state-expanded{
-    		&.order-0{
-    			background-color: darken($guardianGrey,5%);
-    		}
-    		&.order-1{
-    			background-color: darken($nhsLightGrey,5%);
-    		}
+    		// &.order-0{
+    		// 	background-color: darken($guardianGrey,5%);
+    		// }
+    		// &.order-1{
+    		// 	background-color: darken($nhsLightGrey,5%);
+    		// }
 
     		.hidden-container{
     			animation: appear 1s;
@@ -330,7 +334,6 @@ figure.interactive{
     			font-weight:bold;
     			line-height:1em;
     			padding: 12px 0;
-    			border-top:1px solid rgba(0,0,0,0.1);
                 transition: 200ms background-color, 200ms color;
     			cursor:pointer;
     			position: relative;
@@ -341,7 +344,7 @@ figure.interactive{
     				display:block;
     			}
     			&:hover{
-    				.treatment-name{
+    				.treatment-name .name-container{
     					text-decoration: underline;
     				}
     				
@@ -378,12 +381,23 @@ figure.interactive{
     					transform: scale(1);
     				}
                     color:$nhsDarkBlue;
-                    background:rgba(255,255,255,0.2)
+                    .treatment-name .name-container,.treatment-price{
+                        text-decoration: underline;
+                    }
+
+                    .treatment-name input{
+                        display:inline-block;
+                    }
+                    &:hover{
+                        .treatment-name .name-container,.treatment-price{
+                            color:#333;
+                        }
+                    }
     			}
     			.treatment-price{
     				position: absolute;
     				right:2px;
-    				top:12px;
+    				top:18px;
     				font-weight:100;
     				width:60px;
     				text-align: right;
@@ -393,8 +407,24 @@ figure.interactive{
     				padding-left:2px;
     				display:inline-block;
                     font-weight:900;
-                    span{
-                        font-weight:100;
+                    min-height:24px;
+                    .name-container{
+                        padding-top:6px;
+                        display:inline-block;
+                        span{
+                            font-weight:100;
+                        }
+                    }
+                    
+                    input{
+                        width: 40px;
+                        height: 24px;
+                        border-radius: 3px;
+                        border: none;
+                        padding: 0 5px;
+                        font-family:$f-sans-serif-text;
+                        margin-left:10px;
+                        display:none;
                     }
     			}
     		}
@@ -614,7 +644,7 @@ figure.interactive{
 	    				}
 	    			}
                     .treatment-price{
-                        top:14px;
+                        top:20px;
                     }
 	    		}
 	    	}
@@ -841,10 +871,9 @@ figure.interactive{
 	    			padding:16px 0;
 	    			// font-size:16px;
 	    			.treatment-price{
-	    				top:18px;
+	    				top:22px;
 	    			}
 	    			.treatment-name{
-	    				padding-top:2px;
 	    				// padding-left:30px;
 	    			}
 	    			.treatment-radio-button{
@@ -863,7 +892,7 @@ figure.interactive{
 	    	}
 	    }
         #receipt-holder{
-            top:240px;
+            top:210px;
         }
         footer#summary-container{
             margin-top:60px;

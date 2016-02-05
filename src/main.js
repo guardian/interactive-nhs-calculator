@@ -73,10 +73,18 @@ function initLayout(data, el) {
 	})
 
 	app.on('toggleTreatment',function(e){
-		var path = e.keypath + ".added";
-		var newState = e.context.added ? false : true;
+		if(e.original.target.nodeName !== "INPUT"){
+			var path = e.keypath + ".added";
+			var newState = e.context.added ? false : true;
 
-		app.set(path, newState)
+			app.set(path, newState)
+			calculateReceipt();
+		}
+	});
+
+	app.on('changeTreatmentAmount',function(e){
+		var path = e.keypath + ".amount";
+		app.set(path, e.node.value);
 		calculateReceipt();
 	});
 
@@ -102,11 +110,11 @@ function calculateReceipt(){
 	})
 
 	selectedTreatments.forEach(function(treatment){
-		total += Number(treatment.minCost);
+		total += Number(treatment.minCost) * treatment.amount;
 	})
 
 	var orderedTreatments = selectedTreatments.sort(function(a, b) {
-	    return a.minCost - b.minCost;
+	    return (a.minCost * a.amount) - (b.minCost * b.amount);
 	});
 
 	app.set('receipt',{
@@ -206,6 +214,11 @@ function processData(resp,el){
 
 			if(question.id === treatment.id){
 				treatment.added = false
+				if(treatment.repeat === "many"){
+					treatment.amount = 1;
+				}else{
+					treatment.amount = 1;
+				}
 				question.total += Number(treatment.minCost);
 				return true
 			}
