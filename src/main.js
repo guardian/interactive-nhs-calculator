@@ -20,6 +20,7 @@ var dataset = {procedures:[]};
 var rawData;
 
 function initLayout(data, el) {
+	Ractive.DEBUG = false;
 	app = new Ractive({
       el: '#interactive-content',
       template: template,
