@@ -163,6 +163,12 @@ figure.interactive{
             font-size:48px;
             margin-top:24px;
             line-height:1em;
+            #price-disclaimer{
+                font-size: 18px;
+                display: block;
+                font-weight: 100;
+                line-height: 1em;
+            }
             &:before{
                 height:1px;
                 width:70px;
@@ -746,6 +752,10 @@ figure.interactive{
             }
             #total-number{
                 margin-left:80px;
+                #price-disclaimer{
+                    display: inline-block;
+                    margin-left:5px;
+                }
             }
         }
 

@@ -154,7 +154,7 @@ function initHeader(resp){
 	            totalString = totalString.replace(rgx, '$1' + ',' + '$2');
 		    }
 
-			document.querySelector('#total-number').innerHTML = "£" + totalString;
+			document.querySelector('#total-number').innerHTML = "£" + totalString + "<span id='price-disclaimer'> (This is an expected yearly average)</span>" ;
 		}else{
 			document.querySelector('#total-number').innerHTML = "£";
 		}
