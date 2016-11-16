@@ -102,7 +102,7 @@ function boot(el) {
 	el.innerHTML = base;
 	
 	var key = '1LMCyB22vqx-dF3n4zAGEra7eNZX3duWstDbZf-ST2js';
-	var url = 'http://interactive.guim.co.uk/docsdata-test/' + key + '.json';
+	var url = 'https://interactive.guim.co.uk/docsdata-test/' + key + '.json';
 
 	getJSON(url, function(resp) {
 		initHeader(resp);
